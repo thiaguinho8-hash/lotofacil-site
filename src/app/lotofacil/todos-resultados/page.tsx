@@ -3,7 +3,7 @@ import { getUltimosResultados } from "@/lib/caixa";
 import TodosResultadosTable from "@/components/TodosResultadosTable";
 import DadosIndisponiveis from "@/components/DadosIndisponiveis";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 // Quantidade de concursos recentes exibidos na listagem. A API da Caixa não
 // tem endpoint de listagem em lote — cada concurso é uma requisição própria,

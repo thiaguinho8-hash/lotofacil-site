@@ -6,6 +6,11 @@ import { SITE_URL } from "@/lib/site";
 // acessíveis e indexáveis além disso, só não entram na listagem do XML).
 const CONCURSOS_NO_SITEMAP = 200;
 
+// Se a API da Caixa estiver fora do ar no momento do build, o sitemap sai
+// só com as páginas fixas (catch abaixo); com revalidate, ele se completa
+// sozinho depois, sem precisar de novo deploy.
+export const revalidate = 3600;
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const paginasFixas: MetadataRoute.Sitemap = [
     { url: SITE_URL, changeFrequency: "daily", priority: 1 },

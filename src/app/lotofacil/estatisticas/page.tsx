@@ -6,7 +6,7 @@ import AdSlot from "@/components/AdSlot";
 import LotofacilTabs from "@/components/LotofacilTabs";
 import DadosIndisponiveis from "@/components/DadosIndisponiveis";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 const QUANTIDADE_ANALISADA = 100;
 
