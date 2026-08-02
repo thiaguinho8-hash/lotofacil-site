@@ -1,5 +1,11 @@
 const BASE_URL = "https://servicebus2.caixa.gov.br/portaldeloterias/api/lotofacil";
 
+// Fallback gratuito e de terceiros usado quando a API oficial bloqueia (403)
+// requisições vindas de IP de datacenter (Vercel, AWS, etc — ver AGENTS.md /
+// resumo do projeto para o histórico desse bloqueio). Mantido pela comunidade
+// (github.com/guto-alves/loterias-api), sem SLA garantido.
+const FALLBACK_BASE_URL = "https://loteriascaixa-api.herokuapp.com/api/lotofacil";
+
 // Revalidação padrão dos dados: 10 minutos. Resultado do concurso mais
 // recente muda pouco (sorteios saem por volta das 20h, seg-sáb), mas um
 // valor curto evita servir dado velho caso o cron falhe.
@@ -51,7 +57,66 @@ export class CaixaApiError extends Error {
   }
 }
 
-async function fetchResultado(
+interface FallbackRateioPremio {
+  descricao: string;
+  faixa: number;
+  ganhadores: number;
+  valorPremio: number;
+}
+
+interface FallbackResultadoLotofacil {
+  concurso: number;
+  data: string;
+  local: string;
+  dezenasOrdemSorteio: string[];
+  dezenas: string[];
+  premiacoes: FallbackRateioPremio[];
+  acumulou: boolean;
+  proximoConcurso: number | null;
+  dataProximoConcurso: string | null;
+  localGanhadores: GanhadorMunicipio[];
+  valorArrecadado: number;
+  valorAcumuladoProximoConcurso: number;
+  valorEstimadoProximoConcurso: number;
+}
+
+/** Converte a resposta da API alternativa para o mesmo formato usado no resto do site. */
+function mapFallbackParaResultado(
+  fallback: FallbackResultadoLotofacil
+): ResultadoLotofacil {
+  const idxLocal = fallback.local.lastIndexOf(" em ");
+  const localSorteio =
+    idxLocal === -1 ? fallback.local : fallback.local.slice(0, idxLocal);
+  const nomeMunicipioUFSorteio =
+    idxLocal === -1 ? "" : fallback.local.slice(idxLocal + 4);
+
+  return {
+    numero: fallback.concurso,
+    numeroConcursoAnterior: fallback.concurso > 1 ? fallback.concurso - 1 : null,
+    numeroConcursoProximo: fallback.proximoConcurso,
+    tipoJogo: "LOTOFACIL",
+    dataApuracao: fallback.data,
+    dataProximoConcurso: fallback.dataProximoConcurso,
+    acumulado: fallback.acumulou,
+    listaDezenas: fallback.dezenas,
+    dezenasSorteadasOrdemSorteio: fallback.dezenasOrdemSorteio,
+    listaRateioPremio: fallback.premiacoes.map((p) => ({
+      faixa: p.faixa,
+      descricaoFaixa: p.descricao,
+      numeroDeGanhadores: p.ganhadores,
+      valorPremio: p.valorPremio,
+    })),
+    listaMunicipioUFGanhadores: fallback.localGanhadores,
+    valorArrecadado: fallback.valorArrecadado,
+    valorAcumuladoProximoConcurso: fallback.valorAcumuladoProximoConcurso,
+    valorEstimadoProximoConcurso: fallback.valorEstimadoProximoConcurso,
+    localSorteio,
+    nomeMunicipioUFSorteio,
+    ultimoConcurso: fallback.proximoConcurso === null,
+  };
+}
+
+async function fetchResultadoOficial(
   path: string,
   revalidate: number
 ): Promise<ResultadoLotofacil> {
@@ -81,24 +146,81 @@ async function fetchResultado(
 
   if (!data || typeof data.numero !== "number" || !Array.isArray(data.listaDezenas)) {
     throw new CaixaApiError(
-      `Formato de resposta inesperado da API da Caixa em ${path}. ` +
-        `A Caixa pode ter mudado o contrato da API — verificar plano B (scraper/npm loterias-brasil).`
+      `Formato de resposta inesperado da API da Caixa em ${path}.`
     );
   }
 
   return data;
 }
 
+async function fetchResultadoFallback(
+  path: string,
+  revalidate: number
+): Promise<ResultadoLotofacil> {
+  let response: Response;
+  try {
+    response = await fetch(`${FALLBACK_BASE_URL}${path}`, {
+      headers: { Accept: "application/json" },
+      next: { revalidate },
+    });
+  } catch (error) {
+    throw new CaixaApiError(
+      `Falha de rede ao acessar a API alternativa: ${(error as Error).message}`
+    );
+  }
+
+  if (!response.ok) {
+    throw new CaixaApiError(
+      `API alternativa retornou status ${response.status} em ${path}`,
+      response.status
+    );
+  }
+
+  const data = (await response.json()) as FallbackResultadoLotofacil;
+
+  if (!data || typeof data.concurso !== "number" || !Array.isArray(data.dezenas)) {
+    throw new CaixaApiError(
+      `Formato de resposta inesperado da API alternativa em ${path}.`
+    );
+  }
+
+  return mapFallbackParaResultado(data);
+}
+
+/**
+ * Busca um resultado tentando primeiro a API oficial da Caixa; se falhar
+ * (ex: bloqueio 403 de IP de datacenter em produção), cai para a API
+ * alternativa gratuita mantida pela comunidade.
+ */
+async function fetchResultado(
+  pathOficial: string,
+  pathFallback: string,
+  revalidate: number
+): Promise<ResultadoLotofacil> {
+  try {
+    return await fetchResultadoOficial(pathOficial, revalidate);
+  } catch (erroOficial) {
+    try {
+      return await fetchResultadoFallback(pathFallback, revalidate);
+    } catch (erroFallback) {
+      throw new CaixaApiError(
+        `Falha na API oficial (${(erroOficial as Error).message}) e na API ` +
+          `alternativa (${(erroFallback as Error).message}).`
+      );
+    }
+  }
+}
+
 /** Busca o resultado do concurso mais recente. */
 export async function getUltimoResultado(): Promise<ResultadoLotofacil> {
-  return fetchResultado("/", DEFAULT_REVALIDATE_SECONDS);
+  return fetchResultado("/", "/latest", DEFAULT_REVALIDATE_SECONDS);
 }
 
 /** Busca o resultado de um concurso específico pelo número. */
 export async function getResultadoPorConcurso(
   numero: number
 ): Promise<ResultadoLotofacil> {
-  return fetchResultado(`/${numero}`, IMMUTABLE_REVALIDATE_SECONDS);
+  return fetchResultado(`/${numero}`, `/${numero}`, IMMUTABLE_REVALIDATE_SECONDS);
 }
 
 /**
