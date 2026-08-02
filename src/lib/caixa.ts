@@ -7,7 +7,9 @@ const BASE_URL = "https://servicebus2.caixa.gov.br/portaldeloterias/api/lotofaci
 const FALLBACK_BASE_URL = "https://loteriascaixa-api.herokuapp.com/api/lotofacil";
 
 // Revalidação padrão dos dados: 10 minutos. Resultado do concurso mais
-// recente muda pouco (sorteios saem por volta das 20h, seg-sáb), mas um
+// recente muda pouco (sorteios saem por volta das 21h seg-sex, 11h aos
+// domingos — a Caixa mudou o sorteio de sábado à noite para domingo de
+// manhã), mas um
 // valor curto evita servir dado velho caso o cron falhe.
 const DEFAULT_REVALIDATE_SECONDS = 600;
 // Concursos passados nunca mudam — cache "para sempre" (1 ano), reduz carga
@@ -263,13 +265,16 @@ export function formatarDataCurta(data: string): string {
 }
 
 /**
- * Converte "dd/MM/yyyy" em ISO com horário fixo às 20h de Brasília (horário
- * usual dos sorteios), como instante absoluto (-03:00) — independe do fuso
- * horário do servidor que renderiza a página.
+ * Converte "dd/MM/yyyy" em ISO com o horário usual do sorteio daquele dia da
+ * semana em Brasília, como instante absoluto (-03:00) — independe do fuso
+ * horário do servidor que renderiza a página. Domingo o sorteio é às 11h;
+ * segunda a sexta, às 21h (a Caixa não realiza mais sorteio aos sábados).
  */
 export function dataProximoConcursoParaIso(dataBr: string): string | null {
   const match = dataBr.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
   if (!match) return null;
   const [, dd, mm, yyyy] = match;
-  return `${yyyy}-${mm}-${dd}T20:00:00-03:00`;
+  const diaDaSemana = new Date(`${yyyy}-${mm}-${dd}T12:00:00-03:00`).getUTCDay(); // 0 = domingo
+  const horario = diaDaSemana === 0 ? "11:00:00" : "21:00:00";
+  return `${yyyy}-${mm}-${dd}T${horario}-03:00`;
 }
