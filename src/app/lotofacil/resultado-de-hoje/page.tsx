@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { getUltimoResultado } from "@/lib/caixa";
+import DadosIndisponiveis from "@/components/DadosIndisponiveis";
 
-export const revalidate = 600;
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Resultado da Lotofácil de hoje",
@@ -10,6 +11,11 @@ export const metadata: Metadata = {
 };
 
 export default async function ResultadoDeHojePage() {
-  const ultimo = await getUltimoResultado();
+  let ultimo;
+  try {
+    ultimo = await getUltimoResultado();
+  } catch {
+    return <DadosIndisponiveis />;
+  }
   redirect(`/lotofacil/${ultimo.numero}`);
 }

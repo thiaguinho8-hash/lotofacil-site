@@ -6,22 +6,39 @@ import LotteryBalls from "@/components/LotteryBalls";
 import AdSlot from "@/components/AdSlot";
 import AffiliateButton from "@/components/AffiliateButton";
 import EmailCaptureForm from "@/components/EmailCaptureForm";
+import DadosIndisponiveis from "@/components/DadosIndisponiveis";
 import { SITE_NAME } from "@/lib/site";
 
-export const revalidate = 600;
+// Renderização dinâmica: busca os dados a cada requisição em vez de no
+// build, para o deploy nunca falhar se a API da Caixa estiver bloqueando o
+// servidor de build. O fetch em lib/caixa.ts já define seu próprio
+// next.revalidate, então os dados continuam cacheados/atualizados por trás.
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const [ultimo] = await getUltimosResultados(1);
-  const dezenas = formatarDezenas(ultimo.listaDezenas).join(", ");
+  try {
+    const [ultimo] = await getUltimosResultados(1);
+    const dezenas = formatarDezenas(ultimo.listaDezenas).join(", ");
 
-  return {
-    title: `Resultado Lotofácil hoje — Concurso ${ultimo.numero} (${ultimo.dataApuracao})`,
-    description: `Resultado da Lotofácil concurso ${ultimo.numero}, sorteado em ${ultimo.dataApuracao}: ${dezenas}. Veja premiação e o histórico dos últimos concursos.`,
-  };
+    return {
+      title: `Resultado Lotofácil hoje — Concurso ${ultimo.numero} (${ultimo.dataApuracao})`,
+      description: `Resultado da Lotofácil concurso ${ultimo.numero}, sorteado em ${ultimo.dataApuracao}: ${dezenas}. Veja premiação e o histórico dos últimos concursos.`,
+    };
+  } catch {
+    return {
+      title: "Resultado Lotofácil hoje",
+      description: "Veja o resultado mais recente da Lotofácil, premiação e histórico dos últimos concursos.",
+    };
+  }
 }
 
 export default async function Home() {
-  const resultados = await getUltimosResultados(11);
+  let resultados;
+  try {
+    resultados = await getUltimosResultados(11);
+  } catch {
+    return <DadosIndisponiveis />;
+  }
   const [ultimo, ...historico] = resultados;
 
   return (

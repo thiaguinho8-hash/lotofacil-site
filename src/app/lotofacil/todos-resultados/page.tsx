@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getUltimosResultados } from "@/lib/caixa";
 import TodosResultadosTable from "@/components/TodosResultadosTable";
+import DadosIndisponiveis from "@/components/DadosIndisponiveis";
 
 export const revalidate = 3600;
 
@@ -17,7 +18,12 @@ export const metadata: Metadata = {
 };
 
 export default async function TodosResultadosPage() {
-  const resultados = await getUltimosResultados(QUANTIDADE_EXIBIDA);
+  let resultados;
+  try {
+    resultados = await getUltimosResultados(QUANTIDADE_EXIBIDA);
+  } catch {
+    return <DadosIndisponiveis />;
+  }
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-8">

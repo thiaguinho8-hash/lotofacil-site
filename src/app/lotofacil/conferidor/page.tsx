@@ -3,8 +3,9 @@ import { getUltimoResultado, formatarDezenas } from "@/lib/caixa";
 import Conferidor from "@/components/Conferidor";
 import LotteryBalls from "@/components/LotteryBalls";
 import AdSlot from "@/components/AdSlot";
+import DadosIndisponiveis from "@/components/DadosIndisponiveis";
 
-export const revalidate = 600;
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Conferidor da Lotofácil",
@@ -12,7 +13,12 @@ export const metadata: Metadata = {
 };
 
 export default async function ConferidorPage() {
-  const ultimo = await getUltimoResultado();
+  let ultimo;
+  try {
+    ultimo = await getUltimoResultado();
+  } catch {
+    return <DadosIndisponiveis />;
+  }
   const dezenasSorteadas = formatarDezenas(ultimo.listaDezenas);
 
   return (

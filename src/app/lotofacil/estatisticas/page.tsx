@@ -4,6 +4,7 @@ import { calcularFrequencias } from "@/lib/estatisticas";
 import FrequenciaBarChart from "@/components/FrequenciaBarChart";
 import AdSlot from "@/components/AdSlot";
 import LotofacilTabs from "@/components/LotofacilTabs";
+import DadosIndisponiveis from "@/components/DadosIndisponiveis";
 
 export const revalidate = 3600;
 
@@ -15,7 +16,12 @@ export const metadata: Metadata = {
 };
 
 export default async function EstatisticasPage() {
-  const resultados = await getUltimosResultados(QUANTIDADE_ANALISADA);
+  let resultados;
+  try {
+    resultados = await getUltimosResultados(QUANTIDADE_ANALISADA);
+  } catch {
+    return <DadosIndisponiveis />;
+  }
   const frequencias = calcularFrequencias(resultados);
   const maisSorteadas = frequencias.slice(0, 10);
   const menosSorteadas = [...frequencias].sort((a, b) => a.vezes - b.vezes).slice(0, 10);

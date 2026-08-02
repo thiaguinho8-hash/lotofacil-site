@@ -20,11 +20,18 @@ export const revalidate = 3600;
 type Params = { numero: string };
 
 export async function generateStaticParams() {
-  const ultimo = await getUltimoResultado();
-  const quantidade = 10;
-  return Array.from({ length: quantidade }, (_, i) => ({
-    numero: String(ultimo.numero - i),
-  })).filter((p) => Number(p.numero) > 0);
+  try {
+    const ultimo = await getUltimoResultado();
+    const quantidade = 10;
+    return Array.from({ length: quantidade }, (_, i) => ({
+      numero: String(ultimo.numero - i),
+    })).filter((p) => Number(p.numero) > 0);
+  } catch {
+    // API da Caixa indisponível no build: nenhuma página é pré-gerada agora,
+    // mas dynamicParams=true faz cada concurso ser gerado sob demanda na
+    // primeira visita e cacheado a partir daí (ISR).
+    return [];
+  }
 }
 
 function parseNumero(raw: string): number | null {
