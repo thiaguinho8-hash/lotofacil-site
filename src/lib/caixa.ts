@@ -261,3 +261,15 @@ export function formatarDataCurta(data: string): string {
   // API retorna dd/MM/yyyy — já no formato pt-BR esperado.
   return data;
 }
+
+/**
+ * Converte "dd/MM/yyyy" em ISO com horário fixo às 20h de Brasília (horário
+ * usual dos sorteios), como instante absoluto (-03:00) — independe do fuso
+ * horário do servidor que renderiza a página.
+ */
+export function dataProximoConcursoParaIso(dataBr: string): string | null {
+  const match = dataBr.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+  if (!match) return null;
+  const [, dd, mm, yyyy] = match;
+  return `${yyyy}-${mm}-${dd}T20:00:00-03:00`;
+}

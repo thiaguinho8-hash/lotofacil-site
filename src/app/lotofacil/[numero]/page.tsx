@@ -11,6 +11,7 @@ import LotteryBalls from "@/components/LotteryBalls";
 import PremiacaoTable from "@/components/PremiacaoTable";
 import AdSlot from "@/components/AdSlot";
 import AffiliateButton from "@/components/AffiliateButton";
+import WhatsAppShareButton from "@/components/WhatsAppShareButton";
 import LotofacilTabs from "@/components/LotofacilTabs";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
@@ -125,8 +126,13 @@ export default async function ConcursoPage({
 
       <LotteryBalls dezenas={resultado.listaDezenas} size="lg" />
 
-      <div className="my-6 flex justify-center">
+      <div className="my-6 flex flex-wrap justify-center gap-3">
         <AffiliateButton />
+        <WhatsAppShareButton
+          texto={`Resultado da Lotofácil — Concurso ${resultado.numero} (${resultado.dataApuracao}): ${dezenas
+            .map((n) => String(n).padStart(2, "0"))
+            .join(" - ")}. Confira em ${SITE_URL}/lotofacil/${resultado.numero}`}
+        />
       </div>
 
       <AdSlot id={`ad-concurso-${resultado.numero}`} label="Espaço publicitário" className="my-8 h-24 w-full" />

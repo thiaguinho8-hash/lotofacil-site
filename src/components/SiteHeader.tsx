@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ThemeToggle from "@/components/ThemeToggle";
 import { SITE_NAME } from "@/lib/site";
 
 const NAV_LINKS = [
@@ -6,6 +7,7 @@ const NAV_LINKS = [
   { href: "/lotofacil/todos-resultados", label: "Todos os resultados" },
   { href: "/lotofacil/estatisticas", label: "Estatísticas" },
   { href: "/lotofacil/conferidor", label: "Conferidor" },
+  { href: "/lotofacil/blog", label: "Blog" },
 ];
 
 export default function SiteHeader() {
@@ -15,17 +17,20 @@ export default function SiteHeader() {
         <Link href="/" className="text-lg font-extrabold tracking-tight text-blue-700 transition-colors hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
           {SITE_NAME}
         </Link>
-        <nav aria-label="Navegação principal" className="hidden gap-6 text-sm font-medium sm:flex">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-gray-600 transition-colors hover:text-blue-700 dark:text-gray-300 dark:hover:text-blue-400"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
+        <div className="flex items-center gap-4">
+          <nav aria-label="Navegação principal" className="hidden gap-6 text-sm font-medium sm:flex">
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-gray-600 transition-colors hover:text-blue-700 dark:text-gray-300 dark:hover:text-blue-400"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+          <ThemeToggle />
+        </div>
       </div>
       <nav aria-label="Navegação principal mobile" className="flex gap-5 overflow-x-auto px-4 pb-3 text-sm font-medium sm:hidden">
         {NAV_LINKS.map((link) => (

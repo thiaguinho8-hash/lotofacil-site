@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getUltimosResultados, formatarDezenas } from "@/lib/caixa";
+import { getUltimosResultados, formatarDezenas, dataProximoConcursoParaIso } from "@/lib/caixa";
 import ResultadoCard from "@/components/ResultadoCard";
 import LotteryBalls from "@/components/LotteryBalls";
 import AdSlot from "@/components/AdSlot";
 import AffiliateButton from "@/components/AffiliateButton";
+import WhatsAppShareButton from "@/components/WhatsAppShareButton";
+import CountdownFlip from "@/components/CountdownFlip";
 import EmailCaptureForm from "@/components/EmailCaptureForm";
 import DadosIndisponiveis from "@/components/DadosIndisponiveis";
-import { SITE_NAME } from "@/lib/site";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 // Renderização dinâmica: busca os dados a cada requisição em vez de no
 // build, para o deploy nunca falhar se a API da Caixa estiver bloqueando o
@@ -40,6 +42,9 @@ export default async function Home() {
     return <DadosIndisponiveis />;
   }
   const [ultimo, ...historico] = resultados;
+  const alvoProximoSorteioIso = ultimo.dataProximoConcurso
+    ? dataProximoConcursoParaIso(ultimo.dataProximoConcurso)
+    : null;
 
   return (
     <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 px-4 py-8 lg:grid-cols-[minmax(0,1fr)_240px]">
@@ -48,9 +53,28 @@ export default async function Home() {
         <h1 id="resultado-atual" className="mb-5 text-center text-2xl font-extrabold tracking-tight sm:text-left sm:text-3xl">
           Resultado da Lotofácil de hoje
         </h1>
+
+        {alvoProximoSorteioIso && (
+          <div className="mb-6 flex flex-col items-center gap-3 rounded-2xl border border-gray-200 bg-gradient-to-b from-gray-50 to-white p-5 dark:border-gray-800 dark:from-gray-900 dark:to-black sm:items-start">
+            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+              Próximo sorteio em
+            </p>
+            <CountdownFlip alvoIso={alvoProximoSorteioIso} />
+          </div>
+        )}
+
         <ResultadoCard resultado={ultimo} destaque />
-        <div className="mt-6 flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
-          <AffiliateButton />
+        <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-between">
+          <div className="flex flex-col items-center gap-3 sm:flex-row">
+            <AffiliateButton />
+            <WhatsAppShareButton
+              texto={`Resultado da Lotofácil de hoje (concurso ${ultimo.numero}): ${formatarDezenas(
+                ultimo.listaDezenas
+              )
+                .map((n) => String(n).padStart(2, "0"))
+                .join(" - ")}. Confira em ${SITE_URL}/lotofacil/${ultimo.numero}`}
+            />
+          </div>
           <Link
             href={`/lotofacil/${ultimo.numero}`}
             className="text-sm font-semibold text-blue-700 transition-colors hover:text-blue-800 hover:underline dark:text-blue-400 dark:hover:text-blue-300"

@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+/* Dark mode passa a reagir à classe .dark na <html> (controlada pelo toggle
+   manual), em vez de só seguir prefers-color-scheme. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -17,6 +21,16 @@
     --background: #0a0a0a;
     --foreground: #ededed;
   }
+}
+
+:root.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+}
+
+:root.light {
+  --background: #ffffff;
+  --foreground: #171717;
 }
 
 body {
@@ -39,4 +53,21 @@ html {
 :focus-visible {
   outline: 2px solid #2563eb;
   outline-offset: 2px;
+}
+
+@keyframes flip-in {
+  0% {
+    transform: rotateX(-100deg);
+    opacity: 0.3;
+  }
+  100% {
+    transform: rotateX(0deg);
+    opacity: 1;
+  }
+}
+
+.animate-flip-in {
+  animation: flip-in 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform-origin: 50% 100%;
+  backface-visibility: hidden;
 }

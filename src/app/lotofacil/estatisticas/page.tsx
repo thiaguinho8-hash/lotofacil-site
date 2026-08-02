@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { getUltimosResultados } from "@/lib/caixa";
-import { calcularFrequencias } from "@/lib/estatisticas";
+import { calcularFrequencias, calcularAtrasos } from "@/lib/estatisticas";
 import FrequenciaBarChart from "@/components/FrequenciaBarChart";
+import AtrasoList from "@/components/AtrasoList";
 import AdSlot from "@/components/AdSlot";
 import LotofacilTabs from "@/components/LotofacilTabs";
 import DadosIndisponiveis from "@/components/DadosIndisponiveis";
@@ -25,6 +27,7 @@ export default async function EstatisticasPage() {
   const frequencias = calcularFrequencias(resultados);
   const maisSorteadas = frequencias.slice(0, 10);
   const menosSorteadas = [...frequencias].sort((a, b) => a.vezes - b.vezes).slice(0, 10);
+  const maisAtrasadas = calcularAtrasos(resultados).slice(0, 10);
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-8">
@@ -39,6 +42,21 @@ export default async function EstatisticasPage() {
       <div className="grid gap-8 sm:grid-cols-2">
         <FrequenciaBarChart dados={maisSorteadas} titulo="Dezenas mais sorteadas" />
         <FrequenciaBarChart dados={menosSorteadas} titulo="Dezenas menos sorteadas" />
+      </div>
+
+      <div className="mt-8">
+        <AtrasoList dados={maisAtrasadas} titulo="Números atrasados (há mais tempo sem sair)" />
+        <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">
+          Atraso não muda a chance do próximo sorteio — cada concurso é independente. Entenda o
+          porquê no{" "}
+          <Link
+            href="/lotofacil/blog/pares-impares-numeros-atrasados-o-que-diz-a-estatistica"
+            className="text-blue-700 hover:underline dark:text-blue-400"
+          >
+            artigo do blog
+          </Link>
+          .
+        </p>
       </div>
 
       <AdSlot id="ad-estatisticas" label="Espaço publicitário" className="mt-10 h-24 w-full" />
