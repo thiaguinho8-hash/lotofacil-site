@@ -1,65 +1,113 @@
-import Image from "next/image";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { getUltimosResultados, formatarDezenas } from "@/lib/caixa";
+import ResultadoCard from "@/components/ResultadoCard";
+import LotteryBalls from "@/components/LotteryBalls";
+import AdSlot from "@/components/AdSlot";
+import AffiliateButton from "@/components/AffiliateButton";
+import EmailCaptureForm from "@/components/EmailCaptureForm";
+import { SITE_NAME } from "@/lib/site";
 
-export default function Home() {
+export const revalidate = 600;
+
+export async function generateMetadata(): Promise<Metadata> {
+  const [ultimo] = await getUltimosResultados(1);
+  const dezenas = formatarDezenas(ultimo.listaDezenas).join(", ");
+
+  return {
+    title: `Resultado Lotofácil hoje — Concurso ${ultimo.numero} (${ultimo.dataApuracao})`,
+    description: `Resultado da Lotofácil concurso ${ultimo.numero}, sorteado em ${ultimo.dataApuracao}: ${dezenas}. Veja premiação e o histórico dos últimos concursos.`,
+  };
+}
+
+export default async function Home() {
+  const resultados = await getUltimosResultados(11);
+  const [ultimo, ...historico] = resultados;
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 px-4 py-8 lg:grid-cols-[minmax(0,1fr)_240px]">
+    <div className="min-w-0 max-w-4xl">
+      <section aria-labelledby="resultado-atual">
+        <h1 id="resultado-atual" className="mb-5 text-center text-2xl font-extrabold tracking-tight sm:text-left sm:text-3xl">
+          Resultado da Lotofácil de hoje
+        </h1>
+        <ResultadoCard resultado={ultimo} destaque />
+        <div className="mt-6 flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
+          <AffiliateButton />
+          <Link
+            href={`/lotofacil/${ultimo.numero}`}
+            className="text-sm font-semibold text-blue-700 transition-colors hover:text-blue-800 hover:underline dark:text-blue-400 dark:hover:text-blue-300"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            Ver premiação completa do concurso {ultimo.numero} →
+          </Link>
         </div>
-      </main>
+      </section>
+
+      <AdSlot id="ad-home-topo" label="Espaço publicitário" className="my-10 h-24 w-full" />
+
+      <section className="rounded-2xl border border-gray-200 bg-blue-50 p-5 dark:border-gray-800 dark:bg-blue-950/30 sm:p-6">
+        <h2 className="mb-2 text-lg font-bold tracking-tight">Receba o resultado assim que sair</h2>
+        <p className="mb-4 text-sm text-gray-600 dark:text-gray-300">
+          Cadastre seu e-mail ou WhatsApp e avisamos você todo dia que sai novo sorteio.
+        </p>
+        <EmailCaptureForm />
+      </section>
+
+      <AdSlot id="ad-home-meio" label="Espaço publicitário" className="my-10 h-24 w-full" />
+
+      <section aria-labelledby="historico" className="mt-4">
+        <h2 id="historico" className="mb-5 text-xl font-bold tracking-tight">
+          Últimos 10 concursos
+        </h2>
+        <ul className="flex flex-col gap-3">
+          {historico.map((resultado) => (
+            <li
+              key={resultado.numero}
+              className="flex flex-col gap-3 rounded-xl border border-gray-200 p-4 transition-colors hover:border-blue-200 hover:bg-blue-50/40 dark:border-gray-800 dark:hover:border-blue-900 dark:hover:bg-blue-950/20 sm:flex-row sm:items-center sm:justify-between"
+            >
+              <Link
+                href={`/lotofacil/${resultado.numero}`}
+                className="font-semibold transition-colors hover:text-blue-700 dark:hover:text-blue-400"
+              >
+                Concurso {resultado.numero} — {resultado.dataApuracao}
+              </Link>
+              <LotteryBalls dezenas={resultado.listaDezenas} size="sm" />
+            </li>
+          ))}
+        </ul>
+        <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-blue-700 dark:text-blue-400">
+          <Link href="/lotofacil/todos-resultados" className="transition-colors hover:text-blue-800 hover:underline dark:hover:text-blue-300">
+            Ver todos os resultados →
+          </Link>
+          <Link href="/lotofacil/estatisticas" className="transition-colors hover:text-blue-800 hover:underline dark:hover:text-blue-300">
+            Ver estatísticas →
+          </Link>
+          <Link href="/lotofacil/conferidor" className="transition-colors hover:text-blue-800 hover:underline dark:hover:text-blue-300">
+            Conferir meu jogo →
+          </Link>
+          <Link href="/lotofacil/como-jogar" className="transition-colors hover:text-blue-800 hover:underline dark:hover:text-blue-300">
+            Como jogar →
+          </Link>
+          <Link
+            href="/lotofacil/perguntas-frequentes"
+            className="transition-colors hover:text-blue-800 hover:underline dark:hover:text-blue-300"
+          >
+            Perguntas frequentes →
+          </Link>
+        </div>
+      </section>
+
+      <p className="mt-10 text-xs text-gray-400 dark:text-gray-600">
+        {SITE_NAME} não é o site oficial da Caixa Econômica Federal. Os resultados aqui são
+        replicados automaticamente da API pública da Caixa para consulta rápida.
+      </p>
+    </div>
+
+      <aside className="hidden lg:block">
+        <div className="sticky top-20">
+          <AdSlot id="ad-home-sidebar" label="Espaço publicitário (sidebar)" className="h-[600px] w-full" />
+        </div>
+      </aside>
     </div>
   );
 }
