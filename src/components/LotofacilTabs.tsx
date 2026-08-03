@@ -1,6 +1,13 @@
 import Link from "next/link";
 
-type TabKey = "resultado" | "estatisticas" | "como-jogar" | "faq" | "blog" | "bolao";
+type TabKey =
+  | "resultado"
+  | "estatisticas"
+  | "como-jogar"
+  | "faq"
+  | "blog"
+  | "bolao"
+  | "glossario";
 
 const TABS: { key: TabKey; href: string; label: string }[] = [
   { key: "resultado", href: "/lotofacil/resultado-de-hoje", label: "Resultado" },
@@ -9,6 +16,7 @@ const TABS: { key: TabKey; href: string; label: string }[] = [
   { key: "como-jogar", href: "/lotofacil/como-jogar", label: "Como Jogar" },
   { key: "faq", href: "/lotofacil/perguntas-frequentes", label: "Perguntas Frequentes" },
   { key: "blog", href: "/lotofacil/blog", label: "Blog" },
+  { key: "glossario", href: "/lotofacil/glossario", label: "Glossário" },
 ];
 
 export default function LotofacilTabs({ active }: { active: TabKey }) {

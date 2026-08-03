@@ -23,6 +23,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${SITE_URL}/lotofacil/como-jogar`, changeFrequency: "monthly", priority: 0.5 },
     { url: `${SITE_URL}/lotofacil/perguntas-frequentes`, changeFrequency: "monthly", priority: 0.5 },
     { url: `${SITE_URL}/lotofacil/blog`, changeFrequency: "weekly", priority: 0.6 },
+    { url: `${SITE_URL}/lotofacil/glossario`, changeFrequency: "monthly", priority: 0.5 },
     { url: `${SITE_URL}/sobre`, changeFrequency: "yearly", priority: 0.3 },
     { url: `${SITE_URL}/politica-de-privacidade`, changeFrequency: "yearly", priority: 0.2 },
   ];
