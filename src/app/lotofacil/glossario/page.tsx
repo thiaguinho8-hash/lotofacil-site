@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import LotofacilTabs from "@/components/LotofacilTabs";
 import GlossarioBusca from "@/components/GlossarioBusca";
 import AdSlot from "@/components/AdSlot";
 import { GLOSSARIO } from "@/lib/glossario";
@@ -32,7 +31,6 @@ export default function GlossarioPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <LotofacilTabs active="glossario" />
 
       <h1 className="mb-2 text-2xl font-extrabold sm:text-3xl">Glossário da Lotofácil</h1>
       <p className="mb-8 text-gray-600 dark:text-gray-300">

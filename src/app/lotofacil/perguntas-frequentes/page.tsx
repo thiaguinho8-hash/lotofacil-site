@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import LotofacilTabs from "@/components/LotofacilTabs";
 import AdSlot from "@/components/AdSlot";
 
 export const metadata: Metadata = {
@@ -68,7 +67,6 @@ export default function PerguntasFrequentesPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <LotofacilTabs active="faq" />
 
       <h1 className="mb-2 text-2xl font-extrabold sm:text-3xl">Perguntas frequentes sobre a Lotofácil</h1>
       <p className="mb-8 text-gray-600 dark:text-gray-300">

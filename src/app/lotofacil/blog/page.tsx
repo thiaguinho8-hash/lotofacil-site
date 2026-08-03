@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import LotofacilTabs from "@/components/LotofacilTabs";
 import AdSlot from "@/components/AdSlot";
 import BlogFiltro from "@/components/BlogFiltro";
 import { BLOG_POSTS } from "@/lib/blogPosts";
@@ -13,7 +12,6 @@ export const metadata: Metadata = {
 export default function BlogIndexPage() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-8">
-      <LotofacilTabs active="blog" />
 
       <p className="mb-2 text-xs font-bold uppercase tracking-[0.15em] text-gold-deep dark:text-gold">
         Blog

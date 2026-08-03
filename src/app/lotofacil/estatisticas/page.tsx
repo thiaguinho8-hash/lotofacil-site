@@ -5,7 +5,6 @@ import { calcularFrequencias, calcularAtrasos } from "@/lib/estatisticas";
 import FrequenciaBarChart from "@/components/FrequenciaBarChart";
 import AtrasoList from "@/components/AtrasoList";
 import AdSlot from "@/components/AdSlot";
-import LotofacilTabs from "@/components/LotofacilTabs";
 import DadosIndisponiveis from "@/components/DadosIndisponiveis";
 
 export const dynamic = "force-dynamic";
@@ -31,7 +30,6 @@ export default async function EstatisticasPage() {
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-8">
-      <LotofacilTabs active="estatisticas" />
 
       <h1 className="mb-2 text-2xl font-extrabold">Estatísticas da Lotofácil</h1>
       <p className="mb-8 text-sm text-gray-500 dark:text-gray-400">

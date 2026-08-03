@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import LotofacilTabs from "@/components/LotofacilTabs";
 import BolaoCalculadora from "@/components/BolaoCalculadora";
 import AdSlot from "@/components/AdSlot";
 import { getUltimoResultado } from "@/lib/caixa";
@@ -24,7 +23,6 @@ export default async function BolaoPage() {
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-8">
-      <LotofacilTabs active="bolao" />
 
       <h1 className="mb-2 text-2xl font-extrabold sm:text-3xl">Calculadora de bolão</h1>
       <p className="mb-8 text-gray-600 dark:text-gray-300">

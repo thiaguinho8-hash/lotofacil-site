@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import LotofacilTabs from "@/components/LotofacilTabs";
 import AdSlot from "@/components/AdSlot";
 import AffiliateButton from "@/components/AffiliateButton";
 import {
@@ -62,7 +61,6 @@ export default async function BlogPostPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <LotofacilTabs active="blog" />
 
       <nav aria-label="breadcrumb" className="mb-4 text-sm text-gray-500">
         <Link href="/lotofacil/blog" className="hover:underline">

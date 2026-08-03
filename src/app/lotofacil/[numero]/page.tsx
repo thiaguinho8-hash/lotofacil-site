@@ -12,7 +12,6 @@ import PremiacaoTable from "@/components/PremiacaoTable";
 import AdSlot from "@/components/AdSlot";
 import AffiliateButton from "@/components/AffiliateButton";
 import WhatsAppShareButton from "@/components/WhatsAppShareButton";
-import LotofacilTabs from "@/components/LotofacilTabs";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 export const dynamicParams = true;
@@ -107,7 +106,6 @@ export default async function ConcursoPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <LotofacilTabs active="resultado" />
 
       <nav aria-label="breadcrumb" className="mb-4 text-sm text-gray-500">
         <Link href="/" className="hover:underline">
