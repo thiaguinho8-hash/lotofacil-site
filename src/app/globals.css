@@ -31,9 +31,9 @@
   --color-gold: var(--color-gold);
   --color-gold-bright: var(--color-gold-bright);
   --color-gold-deep: var(--color-gold-deep);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
-  --font-display: var(--font-fraunces);
+  --font-display: var(--font-inter);
 }
 
 body {
@@ -51,7 +51,6 @@ body {
 
 h1,
 h2 {
-  font-family: var(--font-display), Georgia, serif;
   letter-spacing: -0.01em;
 }
 
