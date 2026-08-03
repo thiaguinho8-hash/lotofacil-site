@@ -4,41 +4,55 @@
    manual), em vez de só seguir prefers-color-scheme. */
 @custom-variant dark (&:where(.dark, .dark *));
 
+/*
+  Paleta: cédula (verde) + prêmio (dourado), sobre papel — a Lotofácil é
+  dinheiro e sorte, não SaaS azul genérico. Modo escuro usa um verde-preto
+  quente em vez de preto neutro, pra manter a mesma identidade.
+*/
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-paper: #f8f4e8;
+  --color-paper-dim: #efe8d4;
+  --color-ink: #16241c;
+  --color-forest: #1f4d3a;
+  --color-forest-deep: #0f2e22;
+  --color-forest-light: #4c9172;
+  --color-gold: #b8892f;
+  --color-gold-bright: #e0ac48;
+  --color-gold-deep: #8c6821;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-paper: var(--color-paper);
+  --color-paper-dim: var(--color-paper-dim);
+  --color-ink: var(--color-ink);
+  --color-forest: var(--color-forest);
+  --color-forest-deep: var(--color-forest-deep);
+  --color-forest-light: var(--color-forest-light);
+  --color-gold: var(--color-gold);
+  --color-gold-bright: var(--color-gold-bright);
+  --color-gold-deep: var(--color-gold-deep);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-:root.dark {
-  --background: #0a0a0a;
-  --foreground: #ededed;
-}
-
-:root.light {
-  --background: #ffffff;
-  --foreground: #171717;
+  --font-display: var(--font-fraunces);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--color-paper);
+  color: var(--color-ink);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
   line-height: 1.6;
   text-rendering: optimizeLegibility;
+}
+
+:root.dark body {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+h1,
+h2 {
+  font-family: var(--font-display), Georgia, serif;
+  letter-spacing: -0.01em;
 }
 
 html {
@@ -46,12 +60,12 @@ html {
 }
 
 ::selection {
-  background: #2563eb;
-  color: #ffffff;
+  background: var(--color-gold);
+  color: var(--color-ink);
 }
 
 :focus-visible {
-  outline: 2px solid #2563eb;
+  outline: 2px solid var(--color-gold);
   outline-offset: 2px;
 }
 
@@ -70,4 +84,30 @@ html {
   animation: flip-in 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
   transform-origin: 50% 100%;
   backface-visibility: hidden;
+}
+
+@keyframes stamp-in {
+  0% {
+    transform: scale(0.4) rotate(-8deg);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.08) rotate(2deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+.animate-stamp-in {
+  animation: stamp-in 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-flip-in,
+  .animate-stamp-in {
+    animation: none;
+  }
 }

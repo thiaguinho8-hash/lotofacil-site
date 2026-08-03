@@ -10,7 +10,7 @@ export default function PremiacaoTable({ faixas }: { faixas: RateioPremio[] }) {
   return (
     <div className="overflow-x-auto rounded-xl border border-gray-200 dark:border-gray-800">
       <table className="w-full text-sm">
-        <thead className="bg-gray-50 text-left dark:bg-gray-900">
+        <thead className="bg-paper-dim text-left dark:bg-forest-deep/30">
           <tr>
             <th className="px-4 py-2 font-semibold">Faixa</th>
             <th className="px-4 py-2 font-semibold">Ganhadores</th>
@@ -24,7 +24,7 @@ export default function PremiacaoTable({ faixas }: { faixas: RateioPremio[] }) {
               <tr
                 key={faixa.faixa}
                 className={`border-t border-gray-100 transition-colors dark:border-gray-800 ${
-                  principal ? "bg-amber-50 hover:bg-amber-100 dark:bg-amber-950/20 dark:hover:bg-amber-950/40" : "hover:bg-gray-50 dark:hover:bg-gray-900/60"
+                  principal ? "bg-gold/10 hover:bg-gold/20 dark:bg-gold/20 dark:hover:bg-gold/40" : "hover:bg-paper-dim dark:hover:bg-forest-deep/40"
                 }`}
               >
                 <td className="px-4 py-2">
@@ -34,7 +34,7 @@ export default function PremiacaoTable({ faixas }: { faixas: RateioPremio[] }) {
                   </span>
                 </td>
                 <td className="px-4 py-2">{faixa.numeroDeGanhadores.toLocaleString("pt-BR")}</td>
-                <td className={`px-4 py-2 font-semibold ${principal ? "text-amber-700 dark:text-amber-400" : ""}`}>
+                <td className={`px-4 py-2 font-semibold ${principal ? "text-gold-deep dark:text-gold-bright" : ""}`}>
                   {formatarMoeda(faixa.valorPremio)}
                 </td>
               </tr>

@@ -17,10 +17,11 @@ export default function LotteryBalls({
 
   return (
     <ul className="flex flex-wrap justify-center gap-2 sm:gap-3" aria-label="Dezenas sorteadas">
-      {numeros.map((numero) => (
+      {numeros.map((numero, i) => (
         <li
           key={numero}
-          className={`${sizeClasses} flex items-center justify-center rounded-full bg-black font-bold text-white shadow-sm transition-transform duration-150 hover:scale-110`}
+          style={{ animationDelay: `${i * 30}ms` }}
+          className={`${sizeClasses} animate-stamp-in flex items-center justify-center rounded-full bg-[radial-gradient(circle_at_35%_28%,var(--color-forest-light),var(--color-forest)_55%,var(--color-forest-deep)_100%)] font-mono font-bold text-gold-bright shadow-[inset_0_1px_1px_rgba(255,255,255,0.2),inset_0_-2px_3px_rgba(0,0,0,0.4)] ring-2 ring-gold/70 transition-transform duration-150 hover:scale-110 hover:ring-gold-bright`}
         >
           {String(numero).padStart(2, "0")}
         </li>

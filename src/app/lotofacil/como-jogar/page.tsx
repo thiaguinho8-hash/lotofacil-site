@@ -45,7 +45,7 @@ export default function ComoJogarPage() {
           <li>Escolha entre 15 e 20 números de 01 a 25 (quanto mais números, maior o custo e a chance de ganhar).</li>
           <li>Faça a aposta em uma casa lotérica ou pelo site/app oficial das Loterias CAIXA.</li>
           <li>Acompanhe o sorteio — geralmente por volta das 20h, de segunda a sábado.</li>
-          <li>Confira o resultado aqui no site ou use nosso <Link href="/lotofacil/conferidor" className="text-blue-700 hover:underline dark:text-blue-400">conferidor</Link>.</li>
+          <li>Confira o resultado aqui no site ou use nosso <Link href="/lotofacil/conferidor" className="text-forest hover:underline dark:text-gold">conferidor</Link>.</li>
         </ol>
       </section>
 
@@ -61,7 +61,7 @@ export default function ComoJogarPage() {
         </ul>
         <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">
           Os valores em reais mudam a cada concurso, de acordo com a arrecadação. Veja os valores
-          reais do último sorteio na <Link href="/lotofacil/resultado-de-hoje" className="text-blue-700 hover:underline dark:text-blue-400">página de resultado</Link>.
+          reais do último sorteio na <Link href="/lotofacil/resultado-de-hoje" className="text-forest hover:underline dark:text-gold">página de resultado</Link>.
         </p>
       </section>
 
@@ -77,7 +77,7 @@ export default function ComoJogarPage() {
         </p>
       </section>
 
-      <section className="rounded-2xl border border-gray-200 bg-amber-50 p-5 text-center dark:border-gray-800 dark:bg-amber-950/20">
+      <section className="rounded-2xl border border-gray-200 bg-gold/10 p-5 text-center dark:border-gray-800 dark:bg-gold/20">
         <p className="mb-4 text-sm text-gray-700 dark:text-gray-300">
           Pronto para apostar? Faça sua fé em bons números.
         </p>

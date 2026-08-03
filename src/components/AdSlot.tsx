@@ -17,7 +17,7 @@ export default function AdSlot({
       id={id}
       data-ad-slot={id}
       aria-hidden="true"
-      className={`flex items-center justify-center rounded-lg border border-dashed border-gray-300 bg-gray-50 text-xs text-gray-400 dark:border-gray-700 dark:bg-gray-900 ${className}`}
+      className={`flex items-center justify-center rounded-lg border border-dashed border-gray-300 bg-paper-dim text-xs text-gray-400 dark:border-gray-700 dark:bg-forest-deep/30 ${className}`}
     >
       {label}
     </div>

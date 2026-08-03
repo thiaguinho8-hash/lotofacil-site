@@ -36,7 +36,7 @@ export default function TodosResultadosTable({
           <select
             value={ano}
             onChange={(e) => setAno(e.target.value)}
-            className="rounded-lg border border-gray-300 px-3 py-1.5 text-sm transition-colors focus:border-blue-600 focus:outline-none dark:border-gray-700 dark:bg-gray-900"
+            className="rounded-lg border border-gray-300 px-3 py-1.5 text-sm transition-colors focus:border-forest focus:outline-none dark:border-gray-700 dark:bg-forest-deep/30"
           >
             <option value="todos">Todos</option>
             {anos.map((a) => (
@@ -51,7 +51,7 @@ export default function TodosResultadosTable({
           value={busca}
           onChange={(e) => setBusca(e.target.value)}
           placeholder="Buscar por número do concurso"
-          className="flex-1 rounded-lg border border-gray-300 px-3 py-1.5 text-sm transition-colors focus:border-blue-600 focus:outline-none dark:border-gray-700 dark:bg-gray-900"
+          className="flex-1 rounded-lg border border-gray-300 px-3 py-1.5 text-sm transition-colors focus:border-forest focus:outline-none dark:border-gray-700 dark:bg-forest-deep/30"
         />
       </div>
 
@@ -60,7 +60,7 @@ export default function TodosResultadosTable({
       ) : (
         <div className="overflow-x-auto rounded-xl border border-gray-200 dark:border-gray-800">
           <table className="w-full text-sm">
-            <thead className="bg-gray-50 text-left dark:bg-gray-900">
+            <thead className="bg-paper-dim text-left dark:bg-forest-deep/30">
               <tr>
                 <th className="px-4 py-2 font-semibold">Concurso</th>
                 <th className="px-4 py-2 font-semibold">Data</th>
@@ -71,10 +71,10 @@ export default function TodosResultadosTable({
               {filtrados.map((r) => (
                 <tr
                   key={r.numero}
-                  className="border-t border-gray-100 transition-colors hover:bg-gray-50 dark:border-gray-800 dark:hover:bg-gray-900/60"
+                  className="border-t border-gray-100 transition-colors hover:bg-paper-dim dark:border-gray-800 dark:hover:bg-forest-deep/40"
                 >
                   <td className="px-4 py-2">
-                    <Link href={`/lotofacil/${r.numero}`} className="font-semibold text-blue-700 hover:underline dark:text-blue-400">
+                    <Link href={`/lotofacil/${r.numero}`} className="font-semibold text-forest hover:underline dark:text-gold">
                       {r.numero}
                     </Link>
                   </td>

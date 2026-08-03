@@ -25,10 +25,10 @@ export default function BlogIndexPage() {
         {BLOG_POSTS.map((post) => (
           <li
             key={post.slug}
-            className="rounded-xl border border-gray-200 p-5 transition-colors hover:border-blue-200 hover:bg-blue-50/40 dark:border-gray-800 dark:hover:border-blue-900 dark:hover:bg-blue-950/20"
+            className="rounded-xl border border-gray-200 p-5 transition-colors hover:border-gold/40 hover:bg-gold/10/40 dark:border-gray-800 dark:hover:border-forest-deep dark:hover:bg-forest-deep/20"
           >
             <Link href={`/lotofacil/blog/${post.slug}`} className="block">
-              <h2 className="mb-1 font-bold transition-colors hover:text-blue-700 dark:hover:text-blue-400">
+              <h2 className="mb-1 font-bold transition-colors hover:text-forest dark:hover:text-gold">
                 {post.title}
               </h2>
               <p className="text-sm text-gray-600 dark:text-gray-300">{post.description}</p>

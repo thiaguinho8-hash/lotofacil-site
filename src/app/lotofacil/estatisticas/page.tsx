@@ -51,7 +51,7 @@ export default async function EstatisticasPage() {
           porquê no{" "}
           <Link
             href="/lotofacil/blog/pares-impares-numeros-atrasados-o-que-diz-a-estatistica"
-            className="text-blue-700 hover:underline dark:text-blue-400"
+            className="text-forest hover:underline dark:text-gold"
           >
             artigo do blog
           </Link>

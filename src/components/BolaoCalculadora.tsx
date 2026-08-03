@@ -27,10 +27,10 @@ export default function BolaoCalculadora({
     estimativaPremio != null ? estimativaPremio / Math.max(1, participantes) : null;
 
   return (
-    <div className="overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm dark:border-gray-800 dark:bg-gray-950">
-      <div className="bg-gradient-to-br from-blue-700 to-blue-900 px-6 py-6 text-white sm:px-8 sm:py-8">
+    <div className="overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm dark:border-gray-800 dark:bg-forest-deep/50">
+      <div className="bg-gradient-to-br from-forest to-forest-deep px-6 py-6 text-white sm:px-8 sm:py-8">
         <h2 className="text-lg font-bold sm:text-xl">Monte seu bolão</h2>
-        <p className="mt-1 text-sm text-blue-100">
+        <p className="mt-1 text-sm text-paper/85">
           Ajuste as dezenas marcadas e o número de participantes para ver o custo por cota.
         </p>
       </div>
@@ -49,8 +49,8 @@ export default function BolaoCalculadora({
                 aria-pressed={dezenas === n}
                 className={`h-11 w-11 rounded-full text-sm font-bold transition-all duration-150 ${
                   dezenas === n
-                    ? "scale-105 bg-blue-700 text-white shadow-md"
-                    : "bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
+                    ? "scale-105 bg-forest text-white shadow-md"
+                    : "bg-paper-dim text-gray-700 hover:bg-gold/15 dark:bg-forest-deep/40 dark:text-gray-200 dark:hover:bg-forest-deep/60"
                 }`}
               >
                 {n}
@@ -70,7 +70,7 @@ export default function BolaoCalculadora({
             <button
               type="button"
               onClick={() => setParticipantes((p) => Math.max(2, p - 1))}
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-gray-100 text-lg font-bold text-gray-700 transition-colors hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-paper-dim text-lg font-bold text-gray-700 transition-colors hover:bg-gold/15 dark:bg-forest-deep/40 dark:text-gray-200 dark:hover:bg-forest-deep/60"
               aria-label="Diminuir participantes"
             >
               −
@@ -83,12 +83,12 @@ export default function BolaoCalculadora({
               onChange={(e) =>
                 setParticipantes(Math.max(2, Number(e.target.value) || 2))
               }
-              className="h-11 w-20 rounded-xl border border-gray-200 text-center text-lg font-bold tabular-nums dark:border-gray-800 dark:bg-gray-900"
+              className="h-11 w-20 rounded-xl border border-gray-200 text-center text-lg font-bold tabular-nums dark:border-gray-800 dark:bg-forest-deep/30"
             />
             <button
               type="button"
               onClick={() => setParticipantes((p) => p + 1)}
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-gray-100 text-lg font-bold text-gray-700 transition-colors hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-paper-dim text-lg font-bold text-gray-700 transition-colors hover:bg-gold/15 dark:bg-forest-deep/40 dark:text-gray-200 dark:hover:bg-forest-deep/60"
               aria-label="Aumentar participantes"
             >
               +
@@ -96,7 +96,7 @@ export default function BolaoCalculadora({
           </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 rounded-2xl bg-gray-50 p-5 dark:bg-gray-900 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 rounded-2xl bg-paper-dim p-5 dark:bg-forest-deep/30 sm:grid-cols-2">
           <div>
             <p className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
               Custo total da aposta
@@ -109,18 +109,18 @@ export default function BolaoCalculadora({
             <p className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
               Valor por cota
             </p>
-            <p className="mt-1 text-2xl font-extrabold tabular-nums text-blue-700 dark:text-blue-400">
+            <p className="mt-1 text-2xl font-extrabold tabular-nums text-forest dark:text-gold">
               {formatarMoeda(custoPorCota)}
             </p>
           </div>
 
           {premioPorCota != null && (
             <div className="sm:col-span-2">
-              <div className="my-1 h-px bg-gray-200 dark:bg-gray-800" />
+              <div className="my-1 h-px bg-gold/20 dark:bg-forest-deep/40" />
               <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
                 Se essa cota acertasse os 15 pontos, sozinha ganharia
               </p>
-              <p className="mt-1 text-2xl font-extrabold tabular-nums text-amber-600">
+              <p className="mt-1 text-2xl font-extrabold tabular-nums text-gold">
                 {formatarMoeda(premioPorCota)}
               </p>
               <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">

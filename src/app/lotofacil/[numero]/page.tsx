@@ -166,7 +166,7 @@ export default async function ConcursoPage({
             {resultado.listaMunicipioUFGanhadores.map((g, i) => (
               <li
                 key={i}
-                className="rounded-full bg-gray-100 px-3 py-1 dark:bg-gray-900"
+                className="rounded-full bg-paper-dim px-3 py-1 dark:bg-forest-deep/30"
               >
                 {g.municipio}
                 {g.uf && g.uf !== "--" ? `/${g.uf}` : ""}
@@ -176,7 +176,7 @@ export default async function ConcursoPage({
         </>
       )}
 
-      <nav className="mt-10 flex justify-between text-sm font-semibold text-blue-700 dark:text-blue-400">
+      <nav className="mt-10 flex justify-between text-sm font-semibold text-forest dark:text-gold">
         {resultado.numeroConcursoAnterior ? (
           <Link href={`/lotofacil/${resultado.numeroConcursoAnterior}`} className="hover:underline">
             ← Concurso {resultado.numeroConcursoAnterior}

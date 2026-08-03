@@ -12,9 +12,9 @@ const NAV_LINKS = [
 
 export default function SiteHeader() {
   return (
-    <header className="sticky top-0 z-20 border-b border-gray-200 bg-white/80 backdrop-blur dark:border-gray-800 dark:bg-black/60">
+    <header className="sticky top-0 z-20 border-b border-forest/15 bg-paper/80 backdrop-blur dark:border-gold/10 dark:bg-ink/70">
       <div className="mx-auto flex max-w-4xl items-center justify-between gap-4 px-4 py-4">
-        <Link href="/" className="text-lg font-extrabold tracking-tight text-blue-700 transition-colors hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+        <Link href="/" className="font-display text-xl font-semibold tracking-tight text-forest transition-colors hover:text-forest-deep dark:text-gold dark:hover:text-gold-bright">
           {SITE_NAME}
         </Link>
         <div className="flex items-center gap-4">
@@ -23,7 +23,7 @@ export default function SiteHeader() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-gray-600 transition-colors hover:text-blue-700 dark:text-gray-300 dark:hover:text-blue-400"
+                className="text-gray-600 transition-colors hover:text-forest dark:text-gray-300 dark:hover:text-gold"
               >
                 {link.label}
               </Link>
@@ -37,7 +37,7 @@ export default function SiteHeader() {
           <Link
             key={link.href}
             href={link.href}
-            className="whitespace-nowrap text-gray-600 transition-colors hover:text-blue-700 dark:text-gray-300 dark:hover:text-blue-400"
+            className="whitespace-nowrap text-gray-600 transition-colors hover:text-forest dark:text-gray-300 dark:hover:text-gold"
           >
             {link.label}
           </Link>

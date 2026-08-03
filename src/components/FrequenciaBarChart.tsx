@@ -18,9 +18,9 @@ export default function FrequenciaBarChart({
             <span className="w-6 shrink-0 text-right font-mono text-gray-500 dark:text-gray-400">
               {String(dezena).padStart(2, "0")}
             </span>
-            <div className="h-4 flex-1 rounded-full bg-gray-100 dark:bg-gray-900">
+            <div className="h-4 flex-1 rounded-full bg-paper-dim dark:bg-forest-deep/30">
               <div
-                className="h-4 rounded-full bg-blue-600"
+                className="h-4 rounded-full bg-forest"
                 style={{ width: `${Math.max((vezes / max) * 100, 4)}%` }}
               />
             </div>

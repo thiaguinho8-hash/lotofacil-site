@@ -85,7 +85,7 @@ export default async function BlogPostPage({
 
       <AdSlot id={`ad-blog-${post.slug}`} label="Espaço publicitário" className="my-10 h-24 w-full" />
 
-      <section className="rounded-2xl border border-gray-200 bg-amber-50 p-5 text-center dark:border-gray-800 dark:bg-amber-950/20">
+      <section className="rounded-2xl border border-gray-200 bg-gold/10 p-5 text-center dark:border-gray-800 dark:bg-gold/20">
         <p className="mb-4 text-sm text-gray-700 dark:text-gray-300">Pronto para apostar?</p>
         <AffiliateButton />
       </section>

@@ -27,7 +27,7 @@ export default function ThemeToggle() {
       type="button"
       onClick={alternar}
       aria-label={dark ? "Ativar tema claro" : "Ativar tema escuro"}
-      className="flex h-9 w-9 items-center justify-center rounded-full text-lg transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
+      className="flex h-9 w-9 items-center justify-center rounded-full text-lg transition-colors hover:bg-paper-dim dark:hover:bg-forest-deep/50"
     >
       {dark ? "☀️" : "🌙"}
     </button>

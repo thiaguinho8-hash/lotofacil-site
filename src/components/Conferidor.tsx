@@ -46,8 +46,8 @@ export default function Conferidor({
               onClick={() => alternar(numero)}
               className={`h-11 w-11 rounded-full text-sm font-bold transition duration-150 ease-out active:scale-95 ${
                 ativo
-                  ? "bg-blue-700 text-white hover:bg-blue-800"
-                  : "bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-900 dark:text-gray-300 dark:hover:bg-gray-800"
+                  ? "bg-forest text-white hover:bg-forest-deep"
+                  : "bg-paper-dim text-gray-700 hover:bg-gold/15 dark:bg-forest-deep/30 dark:text-gray-300 dark:hover:bg-forest-deep/50"
               }`}
             >
               {String(numero).padStart(2, "0")}
@@ -60,7 +60,7 @@ export default function Conferidor({
         type="button"
         onClick={() => setConferido(true)}
         disabled={selecionadas.size === 0}
-        className="rounded-full bg-amber-600 px-6 py-2.5 font-semibold text-white transition duration-150 ease-out hover:bg-amber-700 hover:shadow-md active:scale-[0.98] disabled:opacity-50 disabled:active:scale-100"
+        className="rounded-full bg-gold px-6 py-2.5 font-semibold text-white transition duration-150 ease-out hover:bg-gold-deep hover:shadow-md active:scale-[0.98] disabled:opacity-50 disabled:active:scale-100"
       >
         Conferir
       </button>

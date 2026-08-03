@@ -55,12 +55,12 @@ export default function EmailCaptureForm() {
         value={contato}
         onChange={(e) => setContato(e.target.value)}
         placeholder="Seu e-mail ou WhatsApp com DDD"
-        className="flex-1 rounded-full border border-gray-300 px-4 py-2.5 text-sm transition-colors focus:border-blue-600 focus:outline-none dark:border-gray-700 dark:bg-gray-900"
+        className="flex-1 rounded-full border border-gray-300 px-4 py-2.5 text-sm transition-colors focus:border-forest focus:outline-none dark:border-gray-700 dark:bg-forest-deep/30"
       />
       <button
         type="submit"
         disabled={status === "loading"}
-        className="rounded-full bg-amber-600 px-5 py-2.5 text-sm font-semibold text-white transition duration-150 ease-out hover:bg-amber-700 hover:shadow-md active:scale-[0.98] disabled:opacity-60 disabled:active:scale-100"
+        className="rounded-full bg-gold px-5 py-2.5 text-sm font-semibold text-white transition duration-150 ease-out hover:bg-gold-deep hover:shadow-md active:scale-[0.98] disabled:opacity-60 disabled:active:scale-100"
       >
         {status === "loading" ? "Enviando..." : "Receber resultado"}
       </button>

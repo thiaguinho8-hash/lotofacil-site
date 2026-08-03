@@ -32,7 +32,7 @@ export default async function BolaoPage() {
         dezenas o bolão marca e quantas pessoas entram na divisão. Veja também{" "}
         <Link
           href="/lotofacil/blog/bolao-da-lotofacil-como-funciona"
-          className="text-blue-700 hover:underline dark:text-blue-400"
+          className="text-forest hover:underline dark:text-gold"
         >
           como organizar um bolão com segurança
         </Link>

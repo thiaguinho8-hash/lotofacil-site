@@ -77,11 +77,11 @@ export default function PerguntasFrequentesPage() {
 
       <div className="flex flex-col divide-y divide-gray-200 rounded-xl border border-gray-200 dark:divide-gray-800 dark:border-gray-800">
         {FAQ.map((item) => (
-          <details key={item.pergunta} className="group p-4 open:bg-gray-50 dark:open:bg-gray-900">
+          <details key={item.pergunta} className="group p-4 open:bg-paper-dim dark:open:bg-forest-deep/30">
             <summary className="cursor-pointer list-none font-semibold marker:content-none">
               <span className="flex items-center justify-between gap-3">
                 {item.pergunta}
-                <span className="shrink-0 text-blue-700 transition group-open:rotate-45 dark:text-blue-400" aria-hidden="true">
+                <span className="shrink-0 text-forest transition group-open:rotate-45 dark:text-gold" aria-hidden="true">
                   +
                 </span>
               </span>

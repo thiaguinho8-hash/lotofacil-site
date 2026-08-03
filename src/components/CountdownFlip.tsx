@@ -22,12 +22,12 @@ function FlipUnit({ valor, label }: { valor: number; label: string }) {
         className="relative h-14 w-12 sm:h-16 sm:w-14"
       >
         <div
-          className="animate-flip-in absolute inset-0 flex items-center justify-center rounded-lg bg-gradient-to-b from-gray-800 to-black text-2xl font-extrabold tabular-nums text-white shadow-lg sm:text-3xl dark:from-gray-700 dark:to-gray-950"
+          className="animate-flip-in absolute inset-0 flex items-center justify-center rounded-lg bg-gradient-to-b from-forest to-forest-deep font-mono text-2xl font-extrabold tabular-nums text-gold-bright shadow-lg ring-1 ring-gold/30 sm:text-3xl"
           style={{ transformStyle: "preserve-3d" }}
         >
           {texto}
         </div>
-        <div className="pointer-events-none absolute inset-x-0 top-1/2 h-px bg-black/30" />
+        <div className="pointer-events-none absolute inset-x-0 top-1/2 h-px bg-black/25" />
       </div>
       <span className="text-[11px] font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
         {label}

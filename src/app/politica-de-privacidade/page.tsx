@@ -32,7 +32,7 @@ export default function PoliticaDePrivacidadePage() {
               href="https://adssettings.google.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-700 hover:underline dark:text-blue-400"
+              className="text-forest hover:underline dark:text-gold"
             >
               Configurações de anúncios do Google
             </a>
@@ -62,7 +62,7 @@ export default function PoliticaDePrivacidadePage() {
           <h2 className="mb-1 font-bold text-gray-900 dark:text-gray-100">5. Contato</h2>
           <p>
             Dúvidas sobre privacidade? Escreva para{" "}
-            <a href="mailto:contato@example.com" className="text-blue-700 hover:underline dark:text-blue-400">
+            <a href="mailto:contato@example.com" className="text-forest hover:underline dark:text-gold">
               contato@example.com
             </a>
             .

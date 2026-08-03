@@ -11,15 +11,15 @@ export default function ResultadoCard({
 }) {
   return (
     <div
-      className={`rounded-2xl border border-gray-200 bg-white p-5 shadow-sm transition-shadow dark:border-gray-800 dark:bg-gray-950 sm:p-8 ${
-        destaque ? "ring-2 ring-blue-600 hover:shadow-md" : "hover:shadow-md"
+      className={`rounded-2xl border border-gray-200 bg-white p-5 shadow-sm transition-shadow dark:border-gray-800 dark:bg-forest-deep/50 sm:p-8 ${
+        destaque ? "ring-2 ring-forest hover:shadow-md" : "hover:shadow-md"
       }`}
     >
       <div className="mb-5 flex flex-wrap items-baseline justify-between gap-2">
         <h2 className={destaque ? "text-2xl font-extrabold tracking-tight sm:text-3xl" : "text-xl font-bold tracking-tight"}>
           <Link
             href={`/lotofacil/${resultado.numero}`}
-            className="transition-colors hover:text-blue-700 dark:hover:text-blue-400"
+            className="transition-colors hover:text-forest dark:hover:text-gold"
           >
             Concurso {resultado.numero}
           </Link>
@@ -42,7 +42,7 @@ export default function ResultadoCard({
           <dt className="text-xs font-medium tracking-wide text-gray-400 uppercase dark:text-gray-500">
             Estimativa próximo prêmio
           </dt>
-          <dd className="mt-1 font-semibold text-blue-700 dark:text-blue-400">
+          <dd className="mt-1 font-semibold text-forest dark:text-gold">
             {formatarMoeda(resultado.valorEstimadoProximoConcurso)}
           </dd>
         </div>

@@ -55,7 +55,7 @@ export default async function Home() {
         </h1>
 
         {alvoProximoSorteioIso && (
-          <div className="mb-6 flex flex-col items-center gap-3 rounded-2xl border border-gray-200 bg-gradient-to-b from-gray-50 to-white p-5 dark:border-gray-800 dark:from-gray-900 dark:to-black sm:items-start">
+          <div className="mb-6 flex flex-col items-center gap-3 rounded-2xl border border-gold/25 bg-paper-dim p-5 dark:border-gold/15 dark:bg-forest-deep/30 sm:items-start">
             <p className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
               Próximo sorteio em
             </p>
@@ -77,7 +77,7 @@ export default async function Home() {
           </div>
           <Link
             href={`/lotofacil/${ultimo.numero}`}
-            className="text-sm font-semibold text-blue-700 transition-colors hover:text-blue-800 hover:underline dark:text-blue-400 dark:hover:text-blue-300"
+            className="text-sm font-semibold text-forest transition-colors hover:text-forest-deep hover:underline dark:text-gold dark:hover:text-gold-bright"
           >
             Ver premiação completa do concurso {ultimo.numero} →
           </Link>
@@ -86,7 +86,7 @@ export default async function Home() {
 
       <AdSlot id="ad-home-topo" label="Espaço publicitário" className="my-10 h-24 w-full" />
 
-      <section className="rounded-2xl border border-gray-200 bg-blue-50 p-5 dark:border-gray-800 dark:bg-blue-950/30 sm:p-6">
+      <section className="rounded-2xl border border-gray-200 bg-gold/10 p-5 dark:border-gray-800 dark:bg-forest-deep/30 sm:p-6">
         <h2 className="mb-2 text-lg font-bold tracking-tight">Receba o resultado assim que sair</h2>
         <p className="mb-4 text-sm text-gray-600 dark:text-gray-300">
           Cadastre seu e-mail ou WhatsApp e avisamos você todo dia que sai novo sorteio.
@@ -104,11 +104,11 @@ export default async function Home() {
           {historico.map((resultado) => (
             <li
               key={resultado.numero}
-              className="flex flex-col gap-3 rounded-xl border border-gray-200 p-4 transition-colors hover:border-blue-200 hover:bg-blue-50/40 dark:border-gray-800 dark:hover:border-blue-900 dark:hover:bg-blue-950/20 sm:flex-row sm:items-center sm:justify-between"
+              className="flex flex-col gap-3 rounded-xl border border-gray-200 p-4 transition-colors hover:border-gold/40 hover:bg-gold/10/40 dark:border-gray-800 dark:hover:border-forest-deep dark:hover:bg-forest-deep/20 sm:flex-row sm:items-center sm:justify-between"
             >
               <Link
                 href={`/lotofacil/${resultado.numero}`}
-                className="font-semibold transition-colors hover:text-blue-700 dark:hover:text-blue-400"
+                className="font-semibold transition-colors hover:text-forest dark:hover:text-gold"
               >
                 Concurso {resultado.numero} — {resultado.dataApuracao}
               </Link>
@@ -116,22 +116,22 @@ export default async function Home() {
             </li>
           ))}
         </ul>
-        <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-blue-700 dark:text-blue-400">
-          <Link href="/lotofacil/todos-resultados" className="transition-colors hover:text-blue-800 hover:underline dark:hover:text-blue-300">
+        <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-forest dark:text-gold">
+          <Link href="/lotofacil/todos-resultados" className="transition-colors hover:text-forest-deep hover:underline dark:hover:text-gold-bright">
             Ver todos os resultados →
           </Link>
-          <Link href="/lotofacil/estatisticas" className="transition-colors hover:text-blue-800 hover:underline dark:hover:text-blue-300">
+          <Link href="/lotofacil/estatisticas" className="transition-colors hover:text-forest-deep hover:underline dark:hover:text-gold-bright">
             Ver estatísticas →
           </Link>
-          <Link href="/lotofacil/conferidor" className="transition-colors hover:text-blue-800 hover:underline dark:hover:text-blue-300">
+          <Link href="/lotofacil/conferidor" className="transition-colors hover:text-forest-deep hover:underline dark:hover:text-gold-bright">
             Conferir meu jogo →
           </Link>
-          <Link href="/lotofacil/como-jogar" className="transition-colors hover:text-blue-800 hover:underline dark:hover:text-blue-300">
+          <Link href="/lotofacil/como-jogar" className="transition-colors hover:text-forest-deep hover:underline dark:hover:text-gold-bright">
             Como jogar →
           </Link>
           <Link
             href="/lotofacil/perguntas-frequentes"
-            className="transition-colors hover:text-blue-800 hover:underline dark:hover:text-blue-300"
+            className="transition-colors hover:text-forest-deep hover:underline dark:hover:text-gold-bright"
           >
             Perguntas frequentes →
           </Link>

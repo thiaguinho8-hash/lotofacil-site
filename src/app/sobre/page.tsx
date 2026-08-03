@@ -27,7 +27,7 @@ export default function SobrePage() {
         </p>
         <p>
           Dúvidas, sugestões ou correções? Escreva para{" "}
-          <a href="mailto:contato@example.com" className="text-blue-700 hover:underline dark:text-blue-400">
+          <a href="mailto:contato@example.com" className="text-forest hover:underline dark:text-gold">
             contato@example.com
           </a>
           .
