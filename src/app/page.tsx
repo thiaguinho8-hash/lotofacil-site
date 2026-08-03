@@ -104,7 +104,7 @@ export default async function Home() {
           {historico.map((resultado) => (
             <li
               key={resultado.numero}
-              className="flex flex-col gap-3 rounded-xl border border-gray-200 p-4 transition-colors hover:border-gold/40 hover:bg-gold/10/40 dark:border-gray-800 dark:hover:border-forest-deep dark:hover:bg-forest-deep/20 sm:flex-row sm:items-center sm:justify-between"
+              className="flex flex-col gap-3 rounded-xl border border-gray-200 p-4 transition-colors hover:border-gold/40 hover:bg-gold/10 dark:border-gray-800 dark:hover:border-forest-deep dark:hover:bg-forest-deep/20 sm:flex-row sm:items-center sm:justify-between"
             >
               <Link
                 href={`/lotofacil/${resultado.numero}`}

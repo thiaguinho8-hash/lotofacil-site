@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import LotofacilTabs from "@/components/LotofacilTabs";
 import AdSlot from "@/components/AdSlot";
+import BlogFiltro from "@/components/BlogFiltro";
 import { BLOG_POSTS } from "@/lib/blogPosts";
 
 export const metadata: Metadata = {
@@ -12,30 +12,21 @@ export const metadata: Metadata = {
 
 export default function BlogIndexPage() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-8">
+    <div className="mx-auto max-w-4xl px-4 py-8">
       <LotofacilTabs active="blog" />
 
-      <h1 className="mb-2 text-2xl font-extrabold sm:text-3xl">Blog</h1>
-      <p className="mb-8 text-gray-600 dark:text-gray-300">
-        Artigos sobre bolão, probabilidade, fechamento e estatísticas da Lotofácil, sem promessa
-        de fórmula mágica — só o que os números realmente dizem.
+      <p className="mb-2 text-xs font-bold uppercase tracking-[0.15em] text-gold-deep dark:text-gold">
+        Blog
+      </p>
+      <h1 className="mb-3 text-3xl font-extrabold sm:text-4xl">
+        Sem fórmula mágica, só o que os números realmente dizem
+      </h1>
+      <p className="mb-10 max-w-2xl text-gray-600 dark:text-gray-300">
+        Artigos sobre bolão, probabilidade, fechamento e estatísticas da Lotofácil — escritos
+        pra te ajudar a entender o jogo, não pra vender uma estratégia infalível que não existe.
       </p>
 
-      <ul className="flex flex-col gap-4">
-        {BLOG_POSTS.map((post) => (
-          <li
-            key={post.slug}
-            className="rounded-xl border border-gray-200 p-5 transition-colors hover:border-gold/40 hover:bg-gold/10/40 dark:border-gray-800 dark:hover:border-forest-deep dark:hover:bg-forest-deep/20"
-          >
-            <Link href={`/lotofacil/blog/${post.slug}`} className="block">
-              <h2 className="mb-1 font-bold transition-colors hover:text-forest dark:hover:text-gold">
-                {post.title}
-              </h2>
-              <p className="text-sm text-gray-600 dark:text-gray-300">{post.description}</p>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <BlogFiltro posts={BLOG_POSTS} />
 
       <AdSlot id="ad-blog-index" label="Espaço publicitário" className="my-10 h-24 w-full" />
     </div>

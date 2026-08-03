@@ -4,7 +4,12 @@ import { notFound } from "next/navigation";
 import LotofacilTabs from "@/components/LotofacilTabs";
 import AdSlot from "@/components/AdSlot";
 import AffiliateButton from "@/components/AffiliateButton";
-import { BLOG_POSTS, getBlogPost } from "@/lib/blogPosts";
+import {
+  BLOG_POSTS,
+  getBlogPost,
+  formatarDataPost,
+  tempoLeituraMin,
+} from "@/lib/blogPosts";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 type Params = { slug: string };
@@ -66,7 +71,15 @@ export default async function BlogPostPage({
         / {post.title}
       </nav>
 
-      <h1 className="mb-6 text-2xl font-extrabold sm:text-3xl">{post.title}</h1>
+      <span className="mb-3 inline-flex w-fit items-center rounded-full bg-gold/15 px-3 py-1 text-xs font-bold uppercase tracking-wide text-gold-deep dark:bg-gold/20 dark:text-gold-bright">
+        {post.categoria}
+      </span>
+
+      <h1 className="mb-2 text-2xl font-extrabold sm:text-3xl">{post.title}</h1>
+
+      <p className="mb-6 text-sm font-medium text-gray-500 dark:text-gray-400">
+        {formatarDataPost(post.publishedAt)} · {tempoLeituraMin(post)} min de leitura
+      </p>
 
       <div className="flex flex-col gap-8">
         {post.sections.map((section) => (

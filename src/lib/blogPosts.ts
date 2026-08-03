@@ -8,6 +8,7 @@ export interface BlogPost {
   title: string;
   description: string;
   publishedAt: string;
+  categoria: string;
   sections: BlogSection[];
 }
 
@@ -23,6 +24,7 @@ export const BLOG_POSTS: BlogPost[] = [
     description:
       "Entenda como funciona um bolão da Lotofácil, como a divisão de cotas e prêmios funciona na prática e os cuidados para organizar o seu com segurança.",
     publishedAt: "2026-08-02",
+    categoria: "Bolão",
     sections: [
       {
         heading: "O que é um bolão",
@@ -55,6 +57,7 @@ export const BLOG_POSTS: BlogPost[] = [
     description:
       "As chances reais de acertar 11, 12, 13, 14 e 15 números na Lotofácil, explicadas de forma simples — e por que resultados passados não influenciam o próximo sorteio.",
     publishedAt: "2026-08-02",
+    categoria: "Probabilidade",
     sections: [
       {
         heading: "As chances por faixa de acerto",
@@ -85,6 +88,7 @@ export const BLOG_POSTS: BlogPost[] = [
     description:
       "Entenda o que é fechamento na Lotofácil, como a técnica organiza apostas com mais de 15 números e o que considerar antes de usar.",
     publishedAt: "2026-08-02",
+    categoria: "Estratégia",
     sections: [
       {
         heading: "O que é fechamento",
@@ -114,6 +118,7 @@ export const BLOG_POSTS: BlogPost[] = [
     description:
       "Lotofácil da Independência, de São João e outros concursos especiais: como funcionam, por que os prêmios costumam ser maiores e como o acumulado funciona.",
     publishedAt: "2026-08-02",
+    categoria: "Prêmios",
     sections: [
       {
         heading: "O que são os concursos especiais",
@@ -137,6 +142,7 @@ export const BLOG_POSTS: BlogPost[] = [
     description:
       "Muita gente escolhe números com base em paridade ou em quanto tempo uma dezena está sem sair. Veja o que isso realmente significa estatisticamente.",
     publishedAt: "2026-08-02",
+    categoria: "Estatística",
     sections: [
       {
         heading: "Por que as pessoas olham pra isso",
@@ -164,3 +170,22 @@ export const BLOG_POSTS: BlogPost[] = [
 export function getBlogPost(slug: string): BlogPost | undefined {
   return BLOG_POSTS.find((post) => post.slug === slug);
 }
+
+/** Tempo de leitura estimado (~200 palavras por minuto), arredondado pra cima. */
+export function tempoLeituraMin(post: BlogPost): number {
+  const palavras = post.sections
+    .flatMap((s) => s.paragraphs)
+    .join(" ")
+    .split(/\s+/)
+    .filter(Boolean).length;
+  return Math.max(1, Math.ceil(palavras / 200));
+}
+
+export function formatarDataPost(iso: string): string {
+  const [ano, mes, dia] = iso.split("-");
+  return `${dia}/${mes}/${ano}`;
+}
+
+export const CATEGORIAS_BLOG: string[] = Array.from(
+  new Set(BLOG_POSTS.map((post) => post.categoria))
+);
