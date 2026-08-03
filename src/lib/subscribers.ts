@@ -54,3 +54,34 @@ export async function salvarAssinante(
   atuais.push({ contato, tipo, criadoEm: new Date().toISOString() });
   await fs.writeFile(DATA_FILE, JSON.stringify(atuais, null, 2), "utf-8");
 }
+
+/** Lista os contatos de e-mail cadastrados, para disparo de notificação. */
+export async function listarAssinantesEmail(): Promise<string[]> {
+  const supabaseUrl = process.env.SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_ANON_KEY;
+
+  if (supabaseUrl && supabaseKey) {
+    const response = await fetch(
+      `${supabaseUrl}/rest/v1/subscribers?tipo=eq.email&select=contato`,
+      {
+        headers: {
+          apikey: supabaseKey,
+          Authorization: `Bearer ${supabaseKey}`,
+        },
+      }
+    );
+    if (!response.ok) {
+      throw new Error(`Falha ao listar assinantes no Supabase: ${response.status}`);
+    }
+    const linhas = (await response.json()) as { contato: string }[];
+    return linhas.map((linha) => linha.contato);
+  }
+
+  try {
+    const raw = await fs.readFile(DATA_FILE, "utf-8");
+    const atuais: Subscriber[] = JSON.parse(raw);
+    return atuais.filter((s) => s.tipo === "email").map((s) => s.contato);
+  } catch {
+    return [];
+  }
+}

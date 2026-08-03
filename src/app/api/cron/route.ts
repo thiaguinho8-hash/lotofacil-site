@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
-import { ResultadoLotofacil } from "@/lib/caixa";
+import { getUltimoResultadoSemCache } from "@/lib/caixa";
 import { getUltimoConcursoProcessado, setUltimoConcursoProcessado } from "@/lib/lastConcurso";
 import { notificarNovoResultado } from "@/lib/notify";
 
@@ -16,31 +16,12 @@ function autorizado(request: NextRequest): boolean {
   return request.headers.get("authorization") === `Bearer ${secret}`;
 }
 
-/** Busca sempre fresca (sem cache), diferente de getUltimoResultado — o cron precisa saber
- *  se saiu resultado novo agora, não o que estava em cache há até 10 minutos. */
-async function buscarUltimoResultadoSemCache(): Promise<ResultadoLotofacil> {
-  const response = await fetch(
-    "https://servicebus2.caixa.gov.br/portaldeloterias/api/lotofacil/",
-    {
-      headers: {
-        "User-Agent": "Mozilla/5.0 (compatible; LotofacilResultadosBot/1.0)",
-        Accept: "application/json",
-      },
-      cache: "no-store",
-    }
-  );
-  if (!response.ok) {
-    throw new Error(`API da Caixa retornou status ${response.status}`);
-  }
-  return response.json();
-}
-
 export async function GET(request: NextRequest) {
   if (!autorizado(request)) {
     return NextResponse.json({ error: "Não autorizado." }, { status: 401 });
   }
 
-  const ultimo = await buscarUltimoResultadoSemCache();
+  const ultimo = await getUltimoResultadoSemCache();
   const processadoAnteriormente = await getUltimoConcursoProcessado();
   const houveNovoResultado = ultimo.numero !== processadoAnteriormente;
 

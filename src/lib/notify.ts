@@ -1,4 +1,5 @@
 import { ResultadoLotofacil, formatarDezenas } from "@/lib/caixa";
+import { listarAssinantesEmail } from "@/lib/subscribers";
 import { SITE_URL } from "@/lib/site";
 
 /**
@@ -12,19 +13,30 @@ export async function notificarNovoResultado(resultado: ResultadoLotofacil): Pro
   const remetente = process.env.NOTIFICATION_FROM_EMAIL;
   if (!apiKey || !remetente) return;
 
-  const dezenas = formatarDezenas(resultado.listaDezenas).join(", ");
+  const destinatarios = await listarAssinantesEmail();
+  if (destinatarios.length === 0) return;
 
-  await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from: remetente,
-      to: [remetente], // TODO: trocar pela lista real de assinantes (ver lib/subscribers.ts)
-      subject: `Resultado Lotofácil ${resultado.numero} saiu!`,
-      html: `<p>Concurso ${resultado.numero} (${resultado.dataApuracao}): ${dezenas}</p><p><a href="${SITE_URL}/lotofacil/${resultado.numero}">Ver resultado completo</a></p>`,
-    }),
-  });
+  const dezenas = formatarDezenas(resultado.listaDezenas).join(", ");
+  const assunto = `Resultado Lotofácil ${resultado.numero} saiu!`;
+  const html = `<p>Concurso ${resultado.numero} (${resultado.dataApuracao}): ${dezenas}</p><p><a href="${SITE_URL}/lotofacil/${resultado.numero}">Ver resultado completo</a></p>`;
+
+  // Um envio por destinatário (não usa "to" com todos juntos) para não
+  // expor o e-mail de um assinante para os outros.
+  await Promise.all(
+    destinatarios.map((destinatario) =>
+      fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          from: remetente,
+          to: [destinatario],
+          subject: assunto,
+          html,
+        }),
+      }).catch((error) => console.error(`Falha ao notificar ${destinatario}:`, error))
+    )
+  );
 }

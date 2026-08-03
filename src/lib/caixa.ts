@@ -118,9 +118,11 @@ function mapFallbackParaResultado(
   };
 }
 
+type OpcoesCache = { next: { revalidate: number } } | { cache: "no-store" };
+
 async function fetchResultadoOficial(
   path: string,
-  revalidate: number
+  opcoesCache: OpcoesCache
 ): Promise<ResultadoLotofacil> {
   let response: Response;
   try {
@@ -129,7 +131,7 @@ async function fetchResultadoOficial(
         "User-Agent": "Mozilla/5.0 (compatible; LotofacilResultadosBot/1.0)",
         Accept: "application/json",
       },
-      next: { revalidate },
+      ...opcoesCache,
     });
   } catch (error) {
     throw new CaixaApiError(
@@ -157,13 +159,13 @@ async function fetchResultadoOficial(
 
 async function fetchResultadoFallback(
   path: string,
-  revalidate: number
+  opcoesCache: OpcoesCache
 ): Promise<ResultadoLotofacil> {
   let response: Response;
   try {
     response = await fetch(`${FALLBACK_BASE_URL}${path}`, {
       headers: { Accept: "application/json" },
-      next: { revalidate },
+      ...opcoesCache,
     });
   } catch (error) {
     throw new CaixaApiError(
@@ -197,13 +199,13 @@ async function fetchResultadoFallback(
 async function fetchResultado(
   pathOficial: string,
   pathFallback: string,
-  revalidate: number
+  opcoesCache: OpcoesCache
 ): Promise<ResultadoLotofacil> {
   try {
-    return await fetchResultadoOficial(pathOficial, revalidate);
+    return await fetchResultadoOficial(pathOficial, opcoesCache);
   } catch (erroOficial) {
     try {
-      return await fetchResultadoFallback(pathFallback, revalidate);
+      return await fetchResultadoFallback(pathFallback, opcoesCache);
     } catch (erroFallback) {
       throw new CaixaApiError(
         `Falha na API oficial (${(erroOficial as Error).message}) e na API ` +
@@ -215,14 +217,24 @@ async function fetchResultado(
 
 /** Busca o resultado do concurso mais recente. */
 export async function getUltimoResultado(): Promise<ResultadoLotofacil> {
-  return fetchResultado("/", "/latest", DEFAULT_REVALIDATE_SECONDS);
+  return fetchResultado("/", "/latest", { next: { revalidate: DEFAULT_REVALIDATE_SECONDS } });
+}
+
+/**
+ * Igual a `getUltimoResultado`, mas sem cache — usado pelo cron para saber
+ * na hora se saiu um resultado novo, sem esperar o revalidate de 10 minutos.
+ */
+export async function getUltimoResultadoSemCache(): Promise<ResultadoLotofacil> {
+  return fetchResultado("/", "/latest", { cache: "no-store" });
 }
 
 /** Busca o resultado de um concurso específico pelo número. */
 export async function getResultadoPorConcurso(
   numero: number
 ): Promise<ResultadoLotofacil> {
-  return fetchResultado(`/${numero}`, `/${numero}`, IMMUTABLE_REVALIDATE_SECONDS);
+  return fetchResultado(`/${numero}`, `/${numero}`, {
+    next: { revalidate: IMMUTABLE_REVALIDATE_SECONDS },
+  });
 }
 
 /**
