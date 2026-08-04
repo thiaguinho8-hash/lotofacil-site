@@ -7,7 +7,7 @@ export default function AffiliateButton({ className = "" }: { className?: string
     <a
       href={AFFILIATE_URL}
       target="_blank"
-      rel="nofollow sponsored noopener noreferrer"
+      rel="noopener noreferrer"
       className={`inline-flex items-center justify-center rounded-full bg-gold px-6 py-3 font-semibold text-white shadow-sm transition duration-150 ease-out hover:bg-gold-deep hover:shadow-md active:scale-[0.98] ${className}`}
     >
       Fazer minha aposta
