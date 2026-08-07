@@ -4,9 +4,9 @@ import AffiliateButton from "@/components/AffiliateButton";
 import AdSlot from "@/components/AdSlot";
 
 export const metadata: Metadata = {
-  title: "Como jogar na Lotofácil",
+  title: "Como jogar na Lotofácil: regras, preço da aposta e como apostar",
   description:
-    "Entenda como funciona a Lotofácil: quantos números escolher, faixas de premiação, Teimosinha, bolão e onde apostar.",
+    "Entenda como jogar na Lotofácil: quantos números escolher, quanto custa a aposta, faixas de premiação, Teimosinha, bolão e onde apostar.",
 };
 
 const FAIXAS = [

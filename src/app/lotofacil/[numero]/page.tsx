@@ -52,8 +52,8 @@ export async function generateMetadata({
   try {
     const resultado = await getResultadoPorConcurso(numero);
     const dezenas = formatarDezenas(resultado.listaDezenas).join(", ");
-    const title = `Resultado Lotofácil ${resultado.numero} — ${resultado.dataApuracao}`;
-    const description = `Dezenas sorteadas no concurso ${resultado.numero} da Lotofácil (${resultado.dataApuracao}): ${dezenas}. Veja premiação por faixa e ganhadores.`;
+    const title = `Resultado Lotofácil Concurso ${resultado.numero} — ${resultado.dataApuracao}`;
+    const description = `Resultado da Lotofácil concurso ${resultado.numero}, sorteado em ${resultado.dataApuracao}: ${dezenas}. Veja premiação por faixa e ganhadores.`;
 
     return {
       title,

@@ -12,8 +12,8 @@ export const dynamic = "force-dynamic";
 const QUANTIDADE_ANALISADA = 100;
 
 export const metadata: Metadata = {
-  title: "Estatísticas da Lotofácil — números mais e menos sorteados",
-  description: `Ranking das dezenas mais e menos sorteadas da Lotofácil, com base nos últimos ${QUANTIDADE_ANALISADA} concursos.`,
+  title: "Estatísticas da Lotofácil — números mais sorteados, menos sorteados e atrasados",
+  description: `Ranking das dezenas mais sorteadas, menos sorteadas e atrasadas da Lotofácil, com base nos últimos ${QUANTIDADE_ANALISADA} concursos.`,
 };
 
 export default async function EstatisticasPage() {

@@ -3,9 +3,9 @@ import Link from "next/link";
 import AdSlot from "@/components/AdSlot";
 
 export const metadata: Metadata = {
-  title: "Perguntas frequentes sobre a Lotofácil",
+  title: "Perguntas frequentes sobre a Lotofácil (FAQ)",
   description:
-    "Tire suas dúvidas sobre a Lotofácil: horário do sorteio, como funciona, quanto se ganha por faixa de acerto e mais.",
+    "Tire suas dúvidas sobre a Lotofácil: que horas sai o resultado, como funciona, quanto se ganha por faixa de acerto e mais.",
 };
 
 const FAQ = [
