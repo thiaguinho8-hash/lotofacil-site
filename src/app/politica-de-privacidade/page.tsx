@@ -62,8 +62,8 @@ export default function PoliticaDePrivacidadePage() {
           <h2 className="mb-1 font-bold text-gray-900 dark:text-gray-100">5. Contato</h2>
           <p>
             Dúvidas sobre privacidade? Escreva para{" "}
-            <a href="mailto:contato@example.com" className="text-forest hover:underline dark:text-gold">
-              contato@example.com
+            <a href="mailto:contato@lotofacilagora.com.br" className="text-forest hover:underline dark:text-gold">
+              contato@lotofacilagora.com.br
             </a>
             .
           </p>
