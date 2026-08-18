@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getUltimoResultado } from "@/lib/caixa";
+import { getUltimoResultadoQuina } from "@/lib/quina";
 import { BLOG_POSTS } from "@/lib/blogPosts";
 import { SITE_URL } from "@/lib/site";
 
@@ -15,6 +16,7 @@ export const revalidate = 3600;
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const paginasFixas: MetadataRoute.Sitemap = [
     { url: SITE_URL, changeFrequency: "daily", priority: 1 },
+    { url: `${SITE_URL}/lotofacil`, changeFrequency: "daily", priority: 0.95 },
     { url: `${SITE_URL}/lotofacil/resultado-de-hoje`, changeFrequency: "daily", priority: 0.9 },
     { url: `${SITE_URL}/lotofacil/todos-resultados`, changeFrequency: "daily", priority: 0.7 },
     { url: `${SITE_URL}/lotofacil/estatisticas`, changeFrequency: "daily", priority: 0.6 },
@@ -24,6 +26,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${SITE_URL}/lotofacil/perguntas-frequentes`, changeFrequency: "monthly", priority: 0.5 },
     { url: `${SITE_URL}/lotofacil/blog`, changeFrequency: "weekly", priority: 0.6 },
     { url: `${SITE_URL}/lotofacil/glossario`, changeFrequency: "monthly", priority: 0.5 },
+    { url: `${SITE_URL}/quina`, changeFrequency: "daily", priority: 0.95 },
+    { url: `${SITE_URL}/quina/resultado-de-hoje`, changeFrequency: "daily", priority: 0.9 },
+    { url: `${SITE_URL}/quina/todos-resultados`, changeFrequency: "daily", priority: 0.7 },
+    { url: `${SITE_URL}/quina/estatisticas`, changeFrequency: "daily", priority: 0.6 },
+    { url: `${SITE_URL}/quina/conferidor`, changeFrequency: "daily", priority: 0.6 },
+    { url: `${SITE_URL}/quina/como-jogar`, changeFrequency: "monthly", priority: 0.5 },
+    { url: `${SITE_URL}/quina/perguntas-frequentes`, changeFrequency: "monthly", priority: 0.5 },
     { url: `${SITE_URL}/sobre`, changeFrequency: "yearly", priority: 0.3 },
     { url: `${SITE_URL}/politica-de-privacidade`, changeFrequency: "yearly", priority: 0.2 },
   ];
@@ -34,18 +43,31 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.5,
   }));
 
-  let paginasDeConcurso: MetadataRoute.Sitemap = [];
+  let paginasDeConcursoLotofacil: MetadataRoute.Sitemap = [];
   try {
     const ultimo = await getUltimoResultado();
-    paginasDeConcurso = Array.from({ length: CONCURSOS_NO_SITEMAP }, (_, i) => {
+    paginasDeConcursoLotofacil = Array.from({ length: CONCURSOS_NO_SITEMAP }, (_, i) => {
       const numero = ultimo.numero - i;
       return numero > 0
         ? { url: `${SITE_URL}/lotofacil/${numero}`, changeFrequency: "never" as const, priority: 0.5 }
         : null;
     }).filter((entry): entry is NonNullable<typeof entry> => entry !== null);
   } catch {
-    paginasDeConcurso = [];
+    paginasDeConcursoLotofacil = [];
   }
 
-  return [...paginasFixas, ...paginasDeBlog, ...paginasDeConcurso];
+  let paginasDeConcursoQuina: MetadataRoute.Sitemap = [];
+  try {
+    const ultimo = await getUltimoResultadoQuina();
+    paginasDeConcursoQuina = Array.from({ length: CONCURSOS_NO_SITEMAP }, (_, i) => {
+      const numero = ultimo.numero - i;
+      return numero > 0
+        ? { url: `${SITE_URL}/quina/${numero}`, changeFrequency: "never" as const, priority: 0.5 }
+        : null;
+    }).filter((entry): entry is NonNullable<typeof entry> => entry !== null);
+  } catch {
+    paginasDeConcursoQuina = [];
+  }
+
+  return [...paginasFixas, ...paginasDeBlog, ...paginasDeConcursoLotofacil, ...paginasDeConcursoQuina];
 }

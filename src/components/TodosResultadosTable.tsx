@@ -11,8 +11,10 @@ function extrairAno(dataApuracao: string): string {
 
 export default function TodosResultadosTable({
   resultados,
+  basePath = "/lotofacil",
 }: {
   resultados: ResultadoLotofacil[];
+  basePath?: string;
 }) {
   const anos = useMemo(() => {
     const unicos = Array.from(new Set(resultados.map((r) => extrairAno(r.dataApuracao))));
@@ -74,7 +76,7 @@ export default function TodosResultadosTable({
                   className="border-t border-gray-100 transition-colors hover:bg-paper-dim dark:border-gray-800 dark:hover:bg-forest-deep/40"
                 >
                   <td className="px-4 py-2">
-                    <Link href={`/lotofacil/${r.numero}`} className="font-semibold text-forest hover:underline dark:text-gold">
+                    <Link href={`${basePath}/${r.numero}`} className="font-semibold text-forest hover:underline dark:text-gold">
                       {r.numero}
                     </Link>
                   </td>

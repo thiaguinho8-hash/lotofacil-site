@@ -5,9 +5,11 @@ import LotteryBalls from "./LotteryBalls";
 export default function ResultadoCard({
   resultado,
   destaque = false,
+  basePath = "/lotofacil",
 }: {
   resultado: ResultadoLotofacil;
   destaque?: boolean;
+  basePath?: string;
 }) {
   return (
     <div
@@ -18,7 +20,7 @@ export default function ResultadoCard({
       <div className="mb-5 flex flex-wrap items-baseline justify-between gap-2">
         <h2 className={destaque ? "text-2xl font-extrabold tracking-tight sm:text-3xl" : "text-xl font-bold tracking-tight"}>
           <Link
-            href={`/lotofacil/${resultado.numero}`}
+            href={`${basePath}/${resultado.numero}`}
             className="transition-colors hover:text-forest dark:hover:text-gold"
           >
             Concurso {resultado.numero}

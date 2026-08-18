@@ -7,14 +7,10 @@ import { SITE_NAME } from "@/lib/site";
 
 const NAV_LINKS = [
   { href: "/", label: "Início" },
-  { href: "/lotofacil/todos-resultados", label: "Todos os resultados" },
-  { href: "/lotofacil/estatisticas", label: "Estatísticas" },
-  { href: "/lotofacil/bolao", label: "Bolão" },
-  { href: "/lotofacil/conferidor", label: "Conferidor" },
+  { href: "/lotofacil", label: "Lotofácil" },
+  { href: "/quina", label: "Quina" },
   { href: "/lotofacil/blog", label: "Blog" },
   { href: "/lotofacil/glossario", label: "Glossário" },
-  { href: "/lotofacil/como-jogar", label: "Como Jogar" },
-  { href: "/lotofacil/perguntas-frequentes", label: "Perguntas Frequentes" },
 ];
 
 function ehAtivo(pathname: string, href: string): boolean {

@@ -5,9 +5,13 @@ export interface FrequenciaDezena {
   vezes: number;
 }
 
-export function calcularFrequencias(resultados: ResultadoLotofacil[]): FrequenciaDezena[] {
+export function calcularFrequencias(
+  resultados: ResultadoLotofacil[],
+  dezenaMin = 1,
+  dezenaMax = 25
+): FrequenciaDezena[] {
   const contagem = new Map<number, number>();
-  for (let n = 1; n <= 25; n++) contagem.set(n, 0);
+  for (let n = dezenaMin; n <= dezenaMax; n++) contagem.set(n, 0);
 
   for (const resultado of resultados) {
     for (const dezena of formatarDezenas(resultado.listaDezenas)) {
@@ -29,13 +33,19 @@ export interface AtrasoDezena {
 }
 
 /** `resultados` deve vir do mais recente para o mais antigo (ordem padrão de getUltimosResultados). */
-export function calcularAtrasos(resultados: ResultadoLotofacil[]): AtrasoDezena[] {
+export function calcularAtrasos(
+  resultados: ResultadoLotofacil[],
+  dezenaMin = 1,
+  dezenaMax = 25
+): AtrasoDezena[] {
   const atrasoPorDezena = new Map<number, { atraso: number; saiuNoIntervalo: boolean }>();
-  for (let n = 1; n <= 25; n++) {
+  for (let n = dezenaMin; n <= dezenaMax; n++) {
     atrasoPorDezena.set(n, { atraso: resultados.length, saiuNoIntervalo: false });
   }
 
-  const dezenasFaltando = new Set<number>(Array.from({ length: 25 }, (_, i) => i + 1));
+  const dezenasFaltando = new Set<number>(
+    Array.from({ length: dezenaMax - dezenaMin + 1 }, (_, i) => dezenaMin + i)
+  );
   for (let i = 0; i < resultados.length && dezenasFaltando.size > 0; i++) {
     for (const dezena of formatarDezenas(resultados[i].listaDezenas)) {
       if (dezenasFaltando.has(dezena)) {

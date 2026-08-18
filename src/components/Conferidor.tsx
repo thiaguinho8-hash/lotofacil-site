@@ -1,16 +1,24 @@
 "use client";
 
-import { useState } from "react";
-
-const TODAS_DEZENAS = Array.from({ length: 25 }, (_, i) => i + 1);
+import { useMemo, useState } from "react";
 
 export default function Conferidor({
   numeroConcurso,
   dezenasSorteadas,
+  dezenaMin = 1,
+  dezenaMax = 25,
+  maxSelecionadas = 20,
 }: {
   numeroConcurso: number;
   dezenasSorteadas: number[];
+  dezenaMin?: number;
+  dezenaMax?: number;
+  maxSelecionadas?: number;
 }) {
+  const todasDezenas = useMemo(
+    () => Array.from({ length: dezenaMax - dezenaMin + 1 }, (_, i) => dezenaMin + i),
+    [dezenaMin, dezenaMax]
+  );
   const [selecionadas, setSelecionadas] = useState<Set<number>>(new Set());
   const [conferido, setConferido] = useState(false);
 
@@ -20,7 +28,7 @@ export default function Conferidor({
       const nova = new Set(atual);
       if (nova.has(numero)) {
         nova.delete(numero);
-      } else if (nova.size < 20) {
+      } else if (nova.size < maxSelecionadas) {
         nova.add(numero);
       }
       return nova;
@@ -36,8 +44,8 @@ export default function Conferidor({
         concurso {numeroConcurso}.
       </p>
 
-      <div className="mb-6 grid grid-cols-5 gap-2 sm:grid-cols-8">
-        {TODAS_DEZENAS.map((numero) => {
+      <div className="mb-6 grid grid-cols-6 gap-2 sm:grid-cols-10">
+        {todasDezenas.map((numero) => {
           const ativo = selecionadas.has(numero);
           return (
             <button
