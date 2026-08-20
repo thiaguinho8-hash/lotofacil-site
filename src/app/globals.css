@@ -132,6 +132,36 @@ html {
   will-change: transform, opacity;
 }
 
+/* Esfera metálica dourada das dezenas sorteadas — inspirada numa referência
+   visual do usuário (moeda 3D com número em relevo, luz vindo de cima-
+   esquerda). Gradiente simula a curvatura/brilho do metal; o texto usa uma
+   dupla sombra (clara + escura) pra simular o número gravado em relevo. */
+.loteria-esfera {
+  background: radial-gradient(
+    circle at 32% 24%,
+    #fbe9b8 0%,
+    var(--color-gold-bright) 22%,
+    var(--color-gold) 55%,
+    var(--color-gold-deep) 85%,
+    #4a3410 100%
+  );
+  color: var(--color-forest-deep);
+  box-shadow:
+    inset 2px 3px 4px rgba(255, 255, 255, 0.55),
+    inset -3px -4px 6px rgba(0, 0, 0, 0.4),
+    0 3px 8px rgba(0, 0, 0, 0.25);
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.35),
+    0 -1px 0 rgba(0, 0, 0, 0.35);
+}
+
+:root.dark .loteria-esfera {
+  box-shadow:
+    inset 2px 3px 4px rgba(255, 255, 255, 0.4),
+    inset -3px -4px 6px rgba(0, 0, 0, 0.55),
+    0 3px 10px rgba(0, 0, 0, 0.5);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-flip-in,
   .animate-stamp-in,
