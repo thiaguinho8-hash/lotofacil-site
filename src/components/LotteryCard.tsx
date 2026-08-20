@@ -47,7 +47,7 @@ function Esfera({ dezena, mediaDoConjunto }: { dezena: DezenaComFrequencia; medi
       >
         {String(dezena.numero).padStart(2, "0")}
       </div>
-      <span className="rounded-full bg-black/30 px-2 py-0.5 font-mono text-[10px] text-gold-bright/90">
+      <span className="rounded-full bg-black/30 px-2 py-0.5 text-[11px] font-medium text-gold-bright/90">
         Freq: {dezena.frequencia}/{dezena.totalAnalisado}
       </span>
     </div>
