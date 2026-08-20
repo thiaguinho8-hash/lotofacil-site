@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getUltimosResultados, formatarDezenas } from "@/lib/caixa";
-import { getUltimosResultadosQuina, type ResultadoQuina } from "@/lib/quina";
 import type { ResultadoLotofacil } from "@/lib/caixa";
-import ResultadoCard from "@/components/ResultadoCard";
+import { getUltimosResultadosQuina, QUINA_DEZENA_MIN, QUINA_DEZENA_MAX, type ResultadoQuina } from "@/lib/quina";
+import { calcularFrequencias } from "@/lib/estatisticas";
+import LotteryCard, { type DezenaComFrequencia } from "@/components/LotteryCard";
 import AdSlot from "@/components/AdSlot";
 import EmailCaptureForm from "@/components/EmailCaptureForm";
 import { SITE_NAME } from "@/lib/site";
@@ -12,16 +13,37 @@ import { SITE_NAME } from "@/lib/site";
 // equivalente em src/lib/caixa.ts).
 export const dynamic = "force-dynamic";
 
+// Quantos concursos usar pra calcular a frequência de cada dezena sorteada
+// (o card mostra "Freq: X/50").
+const QUANTIDADE_ANALISADA = 50;
+
 export const metadata: Metadata = {
   title: `${SITE_NAME} — resultados de Lotofácil e Quina`,
   description:
     "Resultado de hoje da Lotofácil e da Quina, atualizado assim que sai o sorteio: dezenas, premiação e estatísticas de cada loteria.",
 };
 
+/** Monta a lista de dezenas sorteadas + quantas vezes cada uma saiu no histórico analisado. */
+function montarDezenasComFrequencia(
+  resultados: (ResultadoLotofacil | ResultadoQuina)[],
+  dezenaMin: number,
+  dezenaMax: number
+): DezenaComFrequencia[] {
+  const [ultimo] = resultados;
+  const frequencias = calcularFrequencias(resultados, dezenaMin, dezenaMax);
+  const mapaFrequencia = new Map(frequencias.map((f) => [f.dezena, f.vezes]));
+
+  return formatarDezenas(ultimo.listaDezenas).map((numero) => ({
+    numero,
+    frequencia: mapaFrequencia.get(numero) ?? 0,
+    totalAnalisado: resultados.length,
+  }));
+}
+
 export default async function Home() {
-  const [lotofacil, quina] = await Promise.all([
-    getUltimosResultados(1).then(([r]) => r as ResultadoLotofacil).catch(() => null),
-    getUltimosResultadosQuina(1).then(([r]) => r as ResultadoQuina).catch(() => null),
+  const [lotofacilResultados, quinaResultados] = await Promise.all([
+    getUltimosResultados(QUANTIDADE_ANALISADA).catch(() => null),
+    getUltimosResultadosQuina(QUANTIDADE_ANALISADA).catch(() => null),
   ]);
 
   return (
@@ -37,10 +59,15 @@ export default async function Home() {
 
       <div className="grid gap-8 sm:grid-cols-2">
         <div>
-          <h2 className="mb-3 text-lg font-bold tracking-tight">Lotofácil</h2>
-          {lotofacil ? (
+          {lotofacilResultados ? (
             <>
-              <ResultadoCard resultado={lotofacil} basePath="/lotofacil" />
+              <LotteryCard
+                titulo={`Lotofácil — Concurso ${lotofacilResultados[0].numero}`}
+                data={lotofacilResultados[0].dataApuracao}
+                dezenas={montarDezenasComFrequencia(lotofacilResultados, 1, 25)}
+                estimativaProximoPremio={lotofacilResultados[0].valorEstimadoProximoConcurso}
+                href="/lotofacil"
+              />
               <Link
                 href="/lotofacil"
                 className="mt-3 inline-block text-sm font-semibold text-forest transition-colors hover:text-forest-deep hover:underline dark:text-gold dark:hover:text-gold-bright"
@@ -50,7 +77,7 @@ export default async function Home() {
             </>
           ) : (
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              Não conseguimos buscar o resultado agora.{" "}
+              Não conseguimos buscar o resultado da Lotofácil agora.{" "}
               <Link href="/lotofacil" className="text-forest hover:underline dark:text-gold">
                 Ver página da Lotofácil
               </Link>
@@ -60,10 +87,15 @@ export default async function Home() {
         </div>
 
         <div>
-          <h2 className="mb-3 text-lg font-bold tracking-tight">Quina</h2>
-          {quina ? (
+          {quinaResultados ? (
             <>
-              <ResultadoCard resultado={quina} basePath="/quina" />
+              <LotteryCard
+                titulo={`Quina — Concurso ${quinaResultados[0].numero}`}
+                data={quinaResultados[0].dataApuracao}
+                dezenas={montarDezenasComFrequencia(quinaResultados, QUINA_DEZENA_MIN, QUINA_DEZENA_MAX)}
+                estimativaProximoPremio={quinaResultados[0].valorEstimadoProximoConcurso}
+                href="/quina"
+              />
               <Link
                 href="/quina"
                 className="mt-3 inline-block text-sm font-semibold text-forest transition-colors hover:text-forest-deep hover:underline dark:text-gold dark:hover:text-gold-bright"
@@ -73,7 +105,7 @@ export default async function Home() {
             </>
           ) : (
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              Não conseguimos buscar o resultado agora.{" "}
+              Não conseguimos buscar o resultado da Quina agora.{" "}
               <Link href="/quina" className="text-forest hover:underline dark:text-gold">
                 Ver página da Quina
               </Link>

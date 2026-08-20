@@ -162,6 +162,17 @@ html {
     0 3px 10px rgba(0, 0, 0, 0.5);
 }
 
+/* Display estilo LED pro valor do prêmio no LotteryCard: painel escuro
+   "afundado" (inset shadow) com o número brilhando em dourado. */
+.led-display {
+  background: #0a1410;
+  color: var(--color-gold-bright);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6);
+  text-shadow:
+    0 0 6px rgba(224, 172, 72, 0.65),
+    0 0 14px rgba(224, 172, 72, 0.35);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-flip-in,
   .animate-stamp-in,
