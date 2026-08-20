@@ -104,9 +104,39 @@ html {
   animation: stamp-in 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
 }
 
+@keyframes float-gold-particle {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  10% {
+    opacity: var(--particle-opacity, 0.35);
+  }
+  90% {
+    opacity: var(--particle-opacity, 0.35);
+  }
+  100% {
+    transform: translate3d(var(--particle-drift, 20px), -120vh, 0);
+    opacity: 0;
+  }
+}
+
+.particle-gold {
+  position: absolute;
+  bottom: -20px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, var(--color-gold-bright), var(--color-gold));
+  animation-name: float-gold-particle;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform, opacity;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-flip-in,
-  .animate-stamp-in {
+  .animate-stamp-in,
+  .particle-gold {
     animation: none;
+    opacity: 0;
   }
 }
