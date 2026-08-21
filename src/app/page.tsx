@@ -59,12 +59,15 @@ export default async function Home() {
 
       <div className="grid gap-8 sm:grid-cols-2">
         <div>
+          <h2 className="mb-3 text-lg font-bold tracking-tight">Lotofácil</h2>
           {lotofacilResultados ? (
             <>
               <LotteryCard
-                titulo={`Lotofácil — Concurso ${lotofacilResultados[0].numero}`}
+                titulo={`Concurso ${lotofacilResultados[0].numero}`}
                 data={lotofacilResultados[0].dataApuracao}
                 dezenas={montarDezenasComFrequencia(lotofacilResultados, 1, 25)}
+                acumulado={lotofacilResultados[0].acumulado}
+                proximoConcurso={lotofacilResultados[0].dataProximoConcurso}
                 estimativaProximoPremio={lotofacilResultados[0].valorEstimadoProximoConcurso}
                 href="/lotofacil"
               />
@@ -87,12 +90,15 @@ export default async function Home() {
         </div>
 
         <div>
+          <h2 className="mb-3 text-lg font-bold tracking-tight">Quina</h2>
           {quinaResultados ? (
             <>
               <LotteryCard
-                titulo={`Quina — Concurso ${quinaResultados[0].numero}`}
+                titulo={`Concurso ${quinaResultados[0].numero}`}
                 data={quinaResultados[0].dataApuracao}
                 dezenas={montarDezenasComFrequencia(quinaResultados, QUINA_DEZENA_MIN, QUINA_DEZENA_MAX)}
+                acumulado={quinaResultados[0].acumulado}
+                proximoConcurso={quinaResultados[0].dataProximoConcurso}
                 estimativaProximoPremio={quinaResultados[0].valorEstimadoProximoConcurso}
                 href="/quina"
               />

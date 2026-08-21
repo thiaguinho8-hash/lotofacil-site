@@ -12,6 +12,8 @@ export interface LotteryCardProps {
   titulo: string;
   data: string;
   dezenas: DezenaComFrequencia[];
+  acumulado: boolean;
+  proximoConcurso: string | null;
   estimativaProximoPremio: number;
   href?: string;
 }
@@ -54,11 +56,13 @@ function Esfera({ dezena, mediaDoConjunto }: { dezena: DezenaComFrequencia; medi
   );
 }
 
-/** Card "premium" com dezenas sorteadas, frequência de cada uma e estimativa do próximo prêmio. */
+/** Card "premium" com dezenas sorteadas, frequência de cada uma e dados do próximo concurso. */
 export default function LotteryCard({
   titulo,
   data,
   dezenas,
+  acumulado,
+  proximoConcurso,
   estimativaProximoPremio,
   href,
 }: LotteryCardProps) {
@@ -66,28 +70,45 @@ export default function LotteryCard({
     dezenas.length > 0 ? dezenas.reduce((soma, d) => soma + d.frequencia, 0) / dezenas.length : 0;
 
   const conteudo = (
-    <div className="rounded-3xl border border-gold-deep/40 bg-forest-deep/90 p-5 shadow-2xl shadow-black/40 backdrop-blur-md transition-all duration-300 hover:scale-[1.015] hover:border-gold/60 hover:shadow-gold/10 sm:p-7">
-      <div className="mb-6 flex items-baseline justify-between gap-3">
+    <div className="relative overflow-hidden rounded-3xl border border-gold-deep/40 bg-forest-deep/90 p-5 shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_20px_45px_-12px_rgba(0,0,0,0.55)] backdrop-blur-xl transition-all duration-300 hover:scale-[1.015] hover:border-gold/60 hover:shadow-gold/10 sm:p-7">
+      {/* Camada sutil de brilho no topo, reforça o efeito de vidro em camadas */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white/[0.06] to-transparent" />
+
+      <div className="relative mb-6 flex items-baseline justify-between gap-3">
         <h3 className="font-display text-xl font-bold tracking-tight text-paper sm:text-2xl">
           {titulo}
         </h3>
         <span className="text-xs text-paper/60 sm:text-sm">{data}</span>
       </div>
 
-      <div className="grid grid-cols-3 gap-x-3 gap-y-5 sm:grid-cols-5 sm:gap-x-4">
+      <div className="relative grid grid-cols-3 gap-x-3 gap-y-5 sm:grid-cols-5 sm:gap-x-4">
         {dezenas.map((dezena) => (
           <Esfera key={dezena.numero} dezena={dezena} mediaDoConjunto={mediaDoConjunto} />
         ))}
       </div>
 
-      <div className="mt-7 border-t border-gold-deep/25 pt-5 text-center">
-        <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-paper/50">
-          Estimativa próximo prêmio
-        </p>
-        <p className="led-display inline-block rounded-lg px-4 py-2 font-mono text-xl font-bold tracking-wider sm:text-2xl">
-          {formatarMoeda(estimativaProximoPremio)}
-        </p>
-      </div>
+      <dl className="relative mt-7 grid grid-cols-3 gap-2 border-t border-gold-deep/25 pt-5 text-center">
+        <div>
+          <dt className="mb-1.5 text-[10px] font-semibold uppercase tracking-wide text-paper/50 sm:text-xs">
+            Acumulou?
+          </dt>
+          <dd className="text-sm font-bold text-paper sm:text-base">{acumulado ? "Sim" : "Não"}</dd>
+        </div>
+        <div>
+          <dt className="mb-1.5 text-[10px] font-semibold uppercase tracking-wide text-paper/50 sm:text-xs">
+            Próximo concurso
+          </dt>
+          <dd className="text-sm font-bold text-paper sm:text-base">{proximoConcurso ?? "—"}</dd>
+        </div>
+        <div>
+          <dt className="mb-1.5 text-[10px] font-semibold uppercase tracking-wide text-paper/50 sm:text-xs">
+            Estimativa prêmio
+          </dt>
+          <dd className="led-display inline-block rounded-md px-2 py-1 text-[11px] font-bold tracking-wide sm:text-sm">
+            {formatarMoeda(estimativaProximoPremio)}
+          </dd>
+        </div>
+      </dl>
     </div>
   );
 
