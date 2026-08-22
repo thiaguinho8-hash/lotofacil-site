@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
 import BlogFiltro from "@/components/BlogFiltro";
+import NumerosDestaque from "@/components/NumerosDestaque";
 import { BLOG_POSTS } from "@/lib/blogPosts";
+import { getUltimosResultados } from "@/lib/caixa";
+
+export const dynamic = "force-dynamic";
+
+const QUANTIDADE_ANALISADA = 100;
 
 export const metadata: Metadata = {
   title: "Blog — dicas, bolão, probabilidade e estatísticas da Lotofácil",
@@ -9,7 +15,9 @@ export const metadata: Metadata = {
     "Artigos sobre como funciona o bolão, as chances reais de ganhar, fechamento, concursos especiais e estatísticas da Lotofácil.",
 };
 
-export default function BlogIndexPage() {
+export default async function BlogIndexPage() {
+  const resultados = await getUltimosResultados(QUANTIDADE_ANALISADA).catch(() => null);
+
   return (
     <div className="mx-auto max-w-4xl px-4 py-8">
 
@@ -27,6 +35,12 @@ export default function BlogIndexPage() {
       <BlogFiltro posts={BLOG_POSTS} />
 
       <AdSlot id="ad-blog-index" label="Espaço publicitário" className="my-10 h-24 w-full" />
+
+      {resultados && (
+        <div className="mt-2">
+          <NumerosDestaque resultados={resultados} />
+        </div>
+      )}
     </div>
   );
 }
