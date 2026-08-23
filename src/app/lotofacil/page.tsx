@@ -4,6 +4,7 @@ import { getUltimosResultados, formatarDezenas, dataProximoConcursoParaIso } fro
 import ResultadoCard from "@/components/ResultadoCard";
 import LotteryBalls from "@/components/LotteryBalls";
 import AdSlot from "@/components/AdSlot";
+import HouseAd from "@/components/HouseAd";
 import AffiliateButton from "@/components/AffiliateButton";
 import WhatsAppShareButton from "@/components/WhatsAppShareButton";
 import CountdownFlip from "@/components/CountdownFlip";
@@ -92,7 +93,13 @@ export default async function LotofacilPage() {
 
       <AdSlot id="ad-lotofacil-topo" label="Espaço publicitário" className="my-10 h-24 w-full" />
 
-      <AdSlot id="ad-lotofacil-meio" label="Espaço publicitário" className="my-10 h-24 w-full" />
+      <HouseAd
+        href="/lotofacil/blog"
+        title="Sem fórmula mágica, só o que os números dizem"
+        description="Bolão, probabilidade, fechamento e estatística explicados sem enrolação."
+        cta="Ler o blog"
+        className="my-10 h-24 w-full"
+      />
 
       <section aria-labelledby="historico" className="mt-4">
         <h2 id="historico" className="mb-5 text-xl font-bold tracking-tight">

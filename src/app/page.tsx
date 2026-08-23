@@ -5,7 +5,7 @@ import type { ResultadoLotofacil } from "@/lib/caixa";
 import { getUltimosResultadosQuina, QUINA_DEZENA_MIN, QUINA_DEZENA_MAX, type ResultadoQuina } from "@/lib/quina";
 import { calcularFrequencias } from "@/lib/estatisticas";
 import LotteryCard, { type DezenaComFrequencia } from "@/components/LotteryCard";
-import AdSlot from "@/components/AdSlot";
+import HouseAd from "@/components/HouseAd";
 import { SITE_NAME } from "@/lib/site";
 
 // Renderização dinâmica: busca os dados a cada requisição (ver comentário
@@ -120,7 +120,13 @@ export default async function Home() {
         </div>
       </div>
 
-      <AdSlot id="ad-home-meio" label="Espaço publicitário" className="my-10 h-24 w-full" />
+      <HouseAd
+        href="/lotofacil/blog"
+        title="Bolão, probabilidade, fechamento e mais"
+        description="Confira os artigos do blog sobre como funciona cada estratégia — sem prometer fórmula mágica."
+        cta="Ler artigos"
+        className="my-10 h-24 w-full"
+      />
 
       <p className="mt-10 text-xs text-gray-400 dark:text-gray-600">
         {SITE_NAME} não é o site oficial da Caixa Econômica Federal. Os resultados aqui são
