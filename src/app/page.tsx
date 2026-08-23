@@ -6,7 +6,6 @@ import { getUltimosResultadosQuina, QUINA_DEZENA_MIN, QUINA_DEZENA_MAX, type Res
 import { calcularFrequencias } from "@/lib/estatisticas";
 import LotteryCard, { type DezenaComFrequencia } from "@/components/LotteryCard";
 import AdSlot from "@/components/AdSlot";
-import EmailCaptureForm from "@/components/EmailCaptureForm";
 import { SITE_NAME } from "@/lib/site";
 
 // Renderização dinâmica: busca os dados a cada requisição (ver comentário
@@ -122,15 +121,6 @@ export default async function Home() {
       </div>
 
       <AdSlot id="ad-home-meio" label="Espaço publicitário" className="my-10 h-24 w-full" />
-
-      <section className="rounded-2xl border border-gray-200 bg-gold/10 p-5 dark:border-gray-800 dark:bg-forest-deep/30 sm:p-6">
-        <h2 className="mb-2 text-lg font-bold tracking-tight">Receba o resultado assim que sair</h2>
-        <p className="mb-4 text-sm text-gray-600 dark:text-gray-300">
-          Cadastre seu e-mail ou WhatsApp e avisamos você todo dia que sai novo sorteio (Lotofácil
-          e Quina).
-        </p>
-        <EmailCaptureForm />
-      </section>
 
       <p className="mt-10 text-xs text-gray-400 dark:text-gray-600">
         {SITE_NAME} não é o site oficial da Caixa Econômica Federal. Os resultados aqui são

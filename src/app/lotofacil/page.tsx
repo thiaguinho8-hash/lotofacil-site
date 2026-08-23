@@ -7,7 +7,6 @@ import AdSlot from "@/components/AdSlot";
 import AffiliateButton from "@/components/AffiliateButton";
 import WhatsAppShareButton from "@/components/WhatsAppShareButton";
 import CountdownFlip from "@/components/CountdownFlip";
-import EmailCaptureForm from "@/components/EmailCaptureForm";
 import DadosIndisponiveis from "@/components/DadosIndisponiveis";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
@@ -92,14 +91,6 @@ export default async function LotofacilPage() {
       </section>
 
       <AdSlot id="ad-lotofacil-topo" label="Espaço publicitário" className="my-10 h-24 w-full" />
-
-      <section className="rounded-2xl border border-gray-200 bg-gold/10 p-5 dark:border-gray-800 dark:bg-forest-deep/30 sm:p-6">
-        <h2 className="mb-2 text-lg font-bold tracking-tight">Receba o resultado assim que sair</h2>
-        <p className="mb-4 text-sm text-gray-600 dark:text-gray-300">
-          Cadastre seu e-mail ou WhatsApp e avisamos você todo dia que sai novo sorteio.
-        </p>
-        <EmailCaptureForm />
-      </section>
 
       <AdSlot id="ad-lotofacil-meio" label="Espaço publicitário" className="my-10 h-24 w-full" />
 
