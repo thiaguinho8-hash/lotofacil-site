@@ -16,6 +16,7 @@ const ICONE_CATEGORIA: Record<string, string> = {
   Estratégia: "🎯",
   Prêmios: "🏆",
   Estatística: "📈",
+  "Como jogar": "🎟️",
 };
 
 function iconeDe(categoria: string): string {

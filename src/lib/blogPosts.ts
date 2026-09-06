@@ -165,6 +165,97 @@ export const BLOG_POSTS: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "teimosinha-da-lotofacil-como-funciona",
+    title: "Teimosinha da Lotofácil: o que é e como jogar a mesma aposta em vários concursos",
+    description:
+      "Entenda como funciona a Teimosinha da Lotofácil, em quantos concursos dá pra repetir a mesma aposta de uma vez e como calcular o custo total antes de jogar.",
+    publishedAt: "2026-09-02",
+    categoria: "Como jogar",
+    sections: [
+      {
+        heading: "O que é a Teimosinha",
+        paragraphs: [
+          "Teimosinha é o nome que a Caixa dá pra opção de repetir a mesma aposta automaticamente em vários concursos seguidos, sem precisar preencher um volante novo (ou refazer a aposta online) a cada sorteio. Você escolhe os números uma única vez e eles valem pra todos os concursos incluídos na Teimosinha.",
+          "Funciona tanto nas casas lotéricas quanto pelo site oficial de Loterias Online da Caixa, e está disponível pra Lotofácil e pras outras loterias da Caixa.",
+        ],
+      },
+      {
+        heading: "Em quantos concursos dá pra jogar de uma vez",
+        paragraphs: [
+          "A Caixa permite repetir a mesma aposta por 2, 3, 4, 6, 8, 9, 12, 18 ou 24 concursos consecutivos — você escolhe uma dessas opções no momento de apostar.",
+          "O valor total cobrado é simplesmente o preço da sua aposta multiplicado pela quantidade de concursos escolhida. Por exemplo, se você joga com 15 números (aposta mínima) e escolhe Teimosinha de 4 concursos, paga 4 vezes o valor de uma aposta simples de uma só vez.",
+        ],
+      },
+      {
+        heading: "Vale a pena usar?",
+        paragraphs: [
+          "A vantagem prática é conveniência: você não corre o risco de esquecer de apostar num concurso específico, e evita ter que ir toda semana até uma lotérica pra repetir os mesmos números. Nada muda nas chances de acerto — cada concurso dentro da Teimosinha continua sendo um sorteio independente, com a mesma probabilidade de sempre pra cada combinação.",
+          "Antes de escolher quantos concursos incluir, vale calcular o custo total multiplicado — é fácil perder a noção do valor total quando a cobrança é feita de uma vez só.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "lotofacil-paga-imposto-de-renda",
+    title: "Lotofácil paga imposto de renda? Veja quando e quanto incide",
+    description:
+      "Entenda a partir de quanto o prêmio da Lotofácil tem desconto de imposto de renda, qual a alíquota aplicada e como esse valor é descontado antes do pagamento.",
+    publishedAt: "2026-09-02",
+    categoria: "Prêmios",
+    sections: [
+      {
+        heading: "Existe uma faixa isenta",
+        paragraphs: [
+          "Prêmios de loteria no Brasil (incluindo a Lotofácil) têm uma faixa de isenção: valores até R$ 2.112,00 não têm desconto de imposto de renda. Esse número corresponde à primeira faixa da tabela do IRPF e pode ser reajustado no futuro, então vale sempre confirmar o valor vigente na hora de calcular.",
+        ],
+      },
+      {
+        heading: "Acima disso, a alíquota é de 30%",
+        paragraphs: [
+          "Prêmios de loteria que ultrapassam a faixa isenta pagam 30% de imposto de renda, calculado só sobre a parte do valor que excede R$ 2.112,00 — não sobre o prêmio inteiro. Essa regra está prevista na Lei nº 13.756/2018.",
+          "Por exemplo (valores simplificados, sem considerar o número exato do reajuste vigente): num prêmio de R$ 100.000, o imposto incide sobre R$ 97.888 (a diferença acima da faixa isenta), não sobre os R$ 100.000 inteiros.",
+        ],
+      },
+      {
+        heading: "O desconto já vem feito quando você recebe",
+        paragraphs: [
+          "Esse imposto é retido na fonte: a Caixa já desconta o valor automaticamente antes de pagar o prêmio, então quem ganha recebe o valor líquido, sem precisar calcular ou recolher nada por conta própria na hora.",
+          "Ainda assim, o prêmio recebido deve ser informado na declaração anual do Imposto de Renda, no campo de rendimentos sujeitos à tributação exclusiva — mesmo já tendo sido tributado na fonte. Em caso de dúvida sobre a sua declaração específica, vale consultar um contador.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "prazo-para-resgatar-premio-da-lotofacil",
+    title: "Prazo para resgatar prêmio da Lotofácil: até quando você pode receber",
+    description:
+      "O prazo pra resgatar um prêmio da Lotofácil é de 90 dias corridos após o sorteio. Veja o que acontece se esse prazo passar e onde retirar o dinheiro.",
+    publishedAt: "2026-09-02",
+    categoria: "Prêmios",
+    sections: [
+      {
+        heading: "O prazo é de 90 dias corridos",
+        paragraphs: [
+          "Prêmios das Loterias Caixa — incluindo a Lotofácil — prescrevem em 90 dias corridos contados a partir da data do sorteio. O prazo é o mesmo pra apostas simples e pra bolões, e vale tanto pra apostas feitas em casa lotérica quanto pelos canais digitais da Caixa.",
+          "É um prazo fixo em lei, sem prorrogação: não importa o valor do prêmio ou o motivo da demora, passado esse período não tem como reverter.",
+        ],
+      },
+      {
+        heading: "O que acontece se o prazo passar",
+        paragraphs: [
+          "Se o prêmio não for resgatado dentro dos 90 dias, o valor prescreve e é repassado integralmente ao FIES (Fundo de Financiamento Estudantil), conforme a Lei nº 13.756/2018 — não fica retido pela Caixa nem existe segunda chance de resgate depois disso.",
+        ],
+      },
+      {
+        heading: "Onde e como resgatar",
+        paragraphs: [
+          "Prêmios de valor menor costumam poder ser retirados direto em qualquer casa lotérica. Prêmios acima de um determinado valor (que muda periodicamente) só podem ser resgatados em agências da Caixa, com documento de identificação e o bilhete premiado em mãos.",
+          "Assim que sair um resultado que te interessa, confira aqui no site se o seu jogo bateu e não deixe pra resgatar de última hora — sobretudo em bolão, onde é preciso combinar com todo o grupo com antecedência.",
+        ],
+      },
+    ],
+  },
 ];
 
 export function getBlogPost(slug: string): BlogPost | undefined {
