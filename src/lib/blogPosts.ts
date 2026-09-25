@@ -166,92 +166,87 @@ export const BLOG_POSTS: BlogPost[] = [
     ],
   },
   {
-    slug: "teimosinha-da-lotofacil-como-funciona",
-    title: "Teimosinha da Lotofácil: o que é e como jogar a mesma aposta em vários concursos",
+    slug: "quanto-custa-jogar-na-lotofacil-tabela-de-precos",
+    title: "Quanto custa jogar na Lotofácil? Tabela de preços de 15 a 20 números",
     description:
-      "Entenda como funciona a Teimosinha da Lotofácil, em quantos concursos dá pra repetir a mesma aposta de uma vez e como calcular o custo total antes de jogar.",
-    publishedAt: "2026-09-02",
+      "Veja o valor da aposta da Lotofácil com 15, 16, 17, 18, 19 e 20 números e entenda por que o preço sobe tão rápido a cada dezena a mais.",
+    publishedAt: "2026-09-25",
     categoria: "Como jogar",
     sections: [
       {
-        heading: "O que é a Teimosinha",
+        heading: "Tabela de preços por quantidade de números",
         paragraphs: [
-          "Teimosinha é o nome que a Caixa dá pra opção de repetir a mesma aposta automaticamente em vários concursos seguidos, sem precisar preencher um volante novo (ou refazer a aposta online) a cada sorteio. Você escolhe os números uma única vez e eles valem pra todos os concursos incluídos na Teimosinha.",
-          "Funciona tanto nas casas lotéricas quanto pelo site oficial de Loterias Online da Caixa, e está disponível pra Lotofácil e pras outras loterias da Caixa.",
+          "A aposta mínima da Lotofácil, com 15 números, custa R$ 3,50. Marcando mais números, o valor sobe bastante: 16 números fica em torno de R$ 56, 17 números em torno de R$ 476, 18 números em torno de R$ 2.856, 19 números em torno de R$ 13.566 e 20 números (o máximo permitido) em torno de R$ 54.264.",
+          "Esses valores mudam periodicamente por reajuste da Caixa, então antes de fechar uma aposta grande vale sempre conferir o preço atual direto no aplicativo ou site oficial das Loterias CAIXA.",
         ],
       },
       {
-        heading: "Em quantos concursos dá pra jogar de uma vez",
+        heading: "Por que o preço sobe tão rápido",
         paragraphs: [
-          "A Caixa permite repetir a mesma aposta por 2, 3, 4, 6, 8, 9, 12, 18 ou 24 concursos consecutivos — você escolhe uma dessas opções no momento de apostar.",
-          "O valor total cobrado é simplesmente o preço da sua aposta multiplicado pela quantidade de concursos escolhida. Por exemplo, se você joga com 15 números (aposta mínima) e escolhe Teimosinha de 4 concursos, paga 4 vezes o valor de uma aposta simples de uma só vez.",
+          "O motivo não é a Caixa cobrando mais caro por número: é matemática de combinação. Uma aposta com 15 números cobre só uma combinação de 15 dezenas. Uma aposta com 16 números já cobre 16 combinações diferentes de 15 dezenas ao mesmo tempo (qualquer uma das 16 formas de tirar 1 número do grupo de 16). Com 20 números, esse total sobe pra 15.504 combinações cobertas numa aposta só — e por isso o preço cresce de forma exponencial, não linear.",
         ],
       },
       {
-        heading: "Vale a pena usar?",
+        heading: "Alternativa pra jogar com mais números gastando menos por pessoa",
         paragraphs: [
-          "A vantagem prática é conveniência: você não corre o risco de esquecer de apostar num concurso específico, e evita ter que ir toda semana até uma lotérica pra repetir os mesmos números. Nada muda nas chances de acerto — cada concurso dentro da Teimosinha continua sendo um sorteio independente, com a mesma probabilidade de sempre pra cada combinação.",
-          "Antes de escolher quantos concursos incluir, vale calcular o custo total multiplicado — é fácil perder a noção do valor total quando a cobrança é feita de uma vez só.",
-        ],
-      },
-    ],
-  },
-  {
-    slug: "lotofacil-paga-imposto-de-renda",
-    title: "Lotofácil paga imposto de renda? Veja quando e quanto incide",
-    description:
-      "Entenda a partir de quanto o prêmio da Lotofácil tem desconto de imposto de renda, qual a alíquota aplicada e como esse valor é descontado antes do pagamento.",
-    publishedAt: "2026-09-02",
-    categoria: "Prêmios",
-    sections: [
-      {
-        heading: "Existe uma faixa isenta",
-        paragraphs: [
-          "Prêmios de loteria no Brasil (incluindo a Lotofácil) têm uma faixa de isenção: valores até R$ 2.112,00 não têm desconto de imposto de renda. Esse número corresponde à primeira faixa da tabela do IRPF e pode ser reajustado no futuro, então vale sempre confirmar o valor vigente na hora de calcular.",
-        ],
-      },
-      {
-        heading: "Acima disso, a alíquota é de 30%",
-        paragraphs: [
-          "Prêmios de loteria que ultrapassam a faixa isenta pagam 30% de imposto de renda, calculado só sobre a parte do valor que excede R$ 2.112,00 — não sobre o prêmio inteiro. Essa regra está prevista na Lei nº 13.756/2018.",
-          "Por exemplo (valores simplificados, sem considerar o número exato do reajuste vigente): num prêmio de R$ 100.000, o imposto incide sobre R$ 97.888 (a diferença acima da faixa isenta), não sobre os R$ 100.000 inteiros.",
-        ],
-      },
-      {
-        heading: "O desconto já vem feito quando você recebe",
-        paragraphs: [
-          "Esse imposto é retido na fonte: a Caixa já desconta o valor automaticamente antes de pagar o prêmio, então quem ganha recebe o valor líquido, sem precisar calcular ou recolher nada por conta própria na hora.",
-          "Ainda assim, o prêmio recebido deve ser informado na declaração anual do Imposto de Renda, no campo de rendimentos sujeitos à tributação exclusiva — mesmo já tendo sido tributado na fonte. Em caso de dúvida sobre a sua declaração específica, vale consultar um contador.",
+          "Se o valor de uma aposta com muitos números pesa demais sozinho, organizar um bolão é a forma mais comum de dividir esse custo entre várias pessoas sem abrir mão de cobrir mais combinações. Detalhamos como organizar um com segurança no nosso artigo sobre bolão da Lotofácil.",
         ],
       },
     ],
   },
   {
-    slug: "prazo-para-resgatar-premio-da-lotofacil",
-    title: "Prazo para resgatar prêmio da Lotofácil: até quando você pode receber",
+    slug: "surpresinha-da-lotofacil-como-funciona",
+    title: "Surpresinha da Lotofácil: o que é, como funciona e vale a pena usar",
     description:
-      "O prazo pra resgatar um prêmio da Lotofácil é de 90 dias corridos após o sorteio. Veja o que acontece se esse prazo passar e onde retirar o dinheiro.",
-    publishedAt: "2026-09-02",
-    categoria: "Prêmios",
+      "Entenda como funciona a Surpresinha da Lotofácil, se ela muda suas chances de ganhar e quando faz sentido deixar o sistema escolher os números por você.",
+    publishedAt: "2026-09-25",
+    categoria: "Como jogar",
     sections: [
       {
-        heading: "O prazo é de 90 dias corridos",
+        heading: "O que é a Surpresinha",
         paragraphs: [
-          "Prêmios das Loterias Caixa — incluindo a Lotofácil — prescrevem em 90 dias corridos contados a partir da data do sorteio. O prazo é o mesmo pra apostas simples e pra bolões, e vale tanto pra apostas feitas em casa lotérica quanto pelos canais digitais da Caixa.",
-          "É um prazo fixo em lei, sem prorrogação: não importa o valor do prêmio ou o motivo da demora, passado esse período não tem como reverter.",
+          "Surpresinha é a opção de deixar o sistema da lotérica (ou do app/site oficial da Caixa) escolher os números da sua aposta de forma aleatória, em vez de você marcar manualmente. Os números ficam ocultos até a aposta ser efetivada — você só vê o jogo depois de confirmado.",
+          "Não custa nada a mais que uma aposta normal: o preço é o mesmo de uma aposta com a mesma quantidade de números escolhida manualmente.",
         ],
       },
       {
-        heading: "O que acontece se o prazo passar",
+        heading: "Muda as chances de ganhar?",
         paragraphs: [
-          "Se o prêmio não for resgatado dentro dos 90 dias, o valor prescreve e é repassado integralmente ao FIES (Fundo de Financiamento Estudantil), conforme a Lei nº 13.756/2018 — não fica retido pela Caixa nem existe segunda chance de resgate depois disso.",
+          "Não. Como o sorteio é totalmente aleatório, uma combinação de números escolhida pelo computador tem exatamente a mesma probabilidade de ser sorteada que uma combinação escolhida à mão, seguindo padrão ou não. A Surpresinha existe por conveniência — pra quem não quer gastar tempo escolhendo ou não tem números de preferência — não por dar alguma vantagem estatística.",
         ],
       },
       {
-        heading: "Onde e como resgatar",
+        heading: "Quando faz sentido usar",
         paragraphs: [
-          "Prêmios de valor menor costumam poder ser retirados direto em qualquer casa lotérica. Prêmios acima de um determinado valor (que muda periodicamente) só podem ser resgatados em agências da Caixa, com documento de identificação e o bilhete premiado em mãos.",
-          "Assim que sair um resultado que te interessa, confira aqui no site se o seu jogo bateu e não deixe pra resgatar de última hora — sobretudo em bolão, onde é preciso combinar com todo o grupo com antecedência.",
+          "Costuma ser mais usada por quem quer apostar rápido sem pensar muito, ou por quem já ouviu falar que evitar 'escolher os mesmos números de todo mundo' ajudaria a não dividir prêmio com muita gente. Isso tem um fundo de verdade só na divisão do prêmio (menos gente jogou naquela combinação específica), mas não na chance de ela ser sorteada — que continua igual pra qualquer combinação possível.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "vale-a-pena-marcar-mais-numeros-na-lotofacil",
+    title: "Vale a pena marcar mais números na Lotofácil? Custo x chance de ganhar",
+    description:
+      "Marcar mais números na Lotofácil aumenta a chance de premiação, mas o custo sobe muito mais rápido. Veja a relação entre preço e chance antes de decidir.",
+    publishedAt: "2026-09-25",
+    categoria: "Probabilidade",
+    sections: [
+      {
+        heading: "O que muda ao marcar mais números",
+        paragraphs: [
+          "Cada número extra marcado (até o máximo de 20) aumenta a quantidade de combinações de 15 dezenas cobertas pela sua aposta, o que melhora a chance de premiação em todas as faixas — de 11 a 15 acertos. É por isso que apostas com mais números aparecem com mais frequência entre os ganhadores do prêmio principal.",
+        ],
+      },
+      {
+        heading: "Mas o custo cresce muito mais rápido que a chance",
+        paragraphs: [
+          "O problema é a proporção: passar de 15 para 16 números já multiplica o preço por 16, mas a chance de acertar os 15 pontos não multiplica na mesma medida — ela sobe, só que de forma bem menos que proporcional ao aumento do custo. Quanto mais números você adiciona, pior fica essa relação custo-benefício se você estiver jogando sozinho.",
+        ],
+      },
+      {
+        heading: "Na prática",
+        paragraphs: [
+          "Pra quem quer cobrir mais combinações sem pagar o preço cheio sozinho, bolão costuma valer mais a pena que aumentar o número de dezenas na sua própria aposta individual — divide o custo maior entre várias pessoas, mantendo a mesma cobertura de combinações. Veja a tabela de preços completa por quantidade de números e os detalhes de como funciona um bolão nos outros artigos do blog.",
         ],
       },
     ],
