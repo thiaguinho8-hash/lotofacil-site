@@ -3,6 +3,7 @@ import GlossarioBusca from "@/components/GlossarioBusca";
 import AdSlot from "@/components/AdSlot";
 import { GLOSSARIO } from "@/lib/glossario";
 import { SITE_URL } from "@/lib/site";
+import { serializarJsonLd } from "@/lib/jsonLd";
 
 export const metadata: Metadata = {
   title: "Glossário da Lotofácil — termos explicados",
@@ -28,7 +29,7 @@ export default function GlossarioPage() {
       <script
         type="application/ld+json"
         // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializarJsonLd(jsonLd) }}
       />
 
 

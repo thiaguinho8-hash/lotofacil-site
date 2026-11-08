@@ -10,6 +10,7 @@ import AdSlot from "@/components/AdSlot";
 import AffiliateButton from "@/components/AffiliateButton";
 import WhatsAppShareButton from "@/components/WhatsAppShareButton";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { serializarJsonLd } from "@/lib/jsonLd";
 
 export const dynamicParams = true;
 export const revalidate = 3600;
@@ -100,7 +101,7 @@ export default async function ConcursoQuinaPage({
       <script
         type="application/ld+json"
         // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializarJsonLd(jsonLd) }}
       />
 
       <nav aria-label="breadcrumb" className="mb-4 text-sm text-gray-500">

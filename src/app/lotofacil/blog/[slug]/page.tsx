@@ -10,6 +10,7 @@ import {
   tempoLeituraMin,
 } from "@/lib/blogPosts";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { serializarJsonLd } from "@/lib/jsonLd";
 
 type Params = { slug: string };
 
@@ -58,7 +59,7 @@ export default async function BlogPostPage({
       <script
         type="application/ld+json"
         // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializarJsonLd(jsonLd) }}
       />
 
 

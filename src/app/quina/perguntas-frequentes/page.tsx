@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AdSlot from "@/components/AdSlot";
+import { serializarJsonLd } from "@/lib/jsonLd";
 
 export const metadata: Metadata = {
   title: "Perguntas frequentes sobre a Quina (FAQ)",
@@ -64,7 +65,7 @@ export default function PerguntasFrequentesQuinaPage() {
       <script
         type="application/ld+json"
         // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializarJsonLd(jsonLd) }}
       />
 
       <nav aria-label="breadcrumb" className="mb-4 text-sm text-gray-500">
