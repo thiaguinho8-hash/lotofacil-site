@@ -123,7 +123,7 @@ export const BLOG_POSTS: BlogPost[] = [
       {
         heading: "O que são os concursos especiais",
         paragraphs: [
-          "Além dos sorteios regulares (de segunda a sábado), a Lotofácil costuma ter concursos especiais em datas comemorativas — os mais conhecidos são a Lotofácil da Independência e a Lotofácil de São João. Esses concursos costumam ter prêmios maiores e regras um pouco diferentes das apostas comuns.",
+          "Além dos sorteios regulares (de segunda a sexta à noite e aos domingos de manhã), a Lotofácil costuma ter concursos especiais em datas comemorativas — os mais conhecidos são a Lotofácil da Independência e a Lotofácil de São João. Esses concursos costumam ter prêmios maiores e regras um pouco diferentes das apostas comuns.",
           "As datas, valores e regras específicas de cada edição especial mudam a cada ano, então o ideal é sempre conferir o comunicado oficial mais recente no site da Caixa antes de apostar em um concurso especial.",
         ],
       },

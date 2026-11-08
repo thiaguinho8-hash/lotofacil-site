@@ -12,7 +12,7 @@ const FAQ = [
   {
     pergunta: "A que horas sai o resultado da Lotofácil?",
     resposta:
-      "O sorteio costuma acontecer por volta das 20h (horário de Brasília), de segunda a sábado, no Espaço da Sorte, em São Paulo. O resultado aparece aqui no site poucos minutos depois de divulgado pela Caixa.",
+      "O sorteio acontece à noite (em geral entre 20h e 21h, horário de Brasília) de segunda a sexta, e aos domingos por volta das 11h, no Espaço da Sorte, em São Paulo. O resultado aparece aqui no site poucos minutos depois de divulgado pela Caixa.",
   },
   {
     pergunta: "Como funciona a Lotofácil?",
@@ -26,7 +26,7 @@ const FAQ = [
   },
   {
     pergunta: "Quantos dias por semana tem sorteio da Lotofácil?",
-    resposta: "Seis dias por semana: de segunda a sábado. Não há sorteio aos domingos.",
+    resposta: "Seis dias por semana: de segunda a sexta à noite e aos domingos de manhã. Desde julho de 2026 não há mais sorteio aos sábados.",
   },
   {
     pergunta: "O que acontece se ninguém acertar as 15 dezenas?",

@@ -51,7 +51,7 @@ export default function ComoJogarQuinaPage() {
         <ol className="list-decimal space-y-2 pl-5 text-sm leading-relaxed text-gray-700 dark:text-gray-300">
           <li>Escolha entre 5 e 15 números de 01 a 80 (quanto mais números, maior o custo e a chance de ganhar).</li>
           <li>Faça a aposta em uma casa lotérica ou pelo site/app oficial das Loterias CAIXA.</li>
-          <li>Acompanhe o sorteio — geralmente por volta das 20h, de segunda a sábado.</li>
+          <li>Acompanhe o sorteio — geralmente à noite, de segunda a sexta, e aos domingos de manhã (11h).</li>
           <li>Confira o resultado aqui no site ou use nosso <Link href="/quina/conferidor" className="text-forest hover:underline dark:text-gold">conferidor</Link>.</li>
         </ol>
       </section>

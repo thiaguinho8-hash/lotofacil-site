@@ -28,7 +28,7 @@ export const QUINA_DEZENA_MAX = 80;
 export const QUINA_APOSTA_MIN = 5;
 export const QUINA_APOSTA_MAX = 15;
 
-/** Data/hora do próximo sorteio da Quina (mesmo horário usual da Lotofácil: 21h seg-sáb). */
+/** Data/hora do próximo sorteio da Quina (seg-sex à noite, domingo 11h, como a Lotofácil). */
 export function dataProximoConcursoQuinaParaIso(dataBr: string): string | null {
-  return dataProximoConcursoParaIso(dataBr, "21:00:00", "21:00:00");
+  return dataProximoConcursoParaIso(dataBr);
 }
