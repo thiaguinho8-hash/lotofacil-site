@@ -9,6 +9,7 @@ import {
 } from "@/lib/caixa";
 import LotteryBalls from "@/components/LotteryBalls";
 import PremiacaoTable from "@/components/PremiacaoTable";
+import AnaliseConcurso from "@/components/AnaliseConcurso";
 import AdSlot from "@/components/AdSlot";
 import AffiliateButton from "@/components/AffiliateButton";
 import WhatsAppShareButton from "@/components/WhatsAppShareButton";
@@ -83,6 +84,9 @@ export default async function ConcursoPage({
   }
 
   const dezenas = formatarDezenas(resultado.listaDezenas);
+  const anterior = resultado.numeroConcursoAnterior
+    ? await getResultadoPorConcurso(resultado.numeroConcursoAnterior).catch(() => null)
+    : null;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -153,6 +157,8 @@ export default async function ConcursoPage({
           <dd className="font-semibold">{formatarMoeda(resultado.valorEstimadoProximoConcurso)}</dd>
         </div>
       </dl>
+
+      <AnaliseConcurso resultado={resultado} anterior={anterior} nomeLoteria="Lotofácil" />
 
       <h2 className="mb-3 mt-8 text-xl font-bold">Premiação por faixa de acerto</h2>
       <PremiacaoTable faixas={resultado.listaRateioPremio} />
