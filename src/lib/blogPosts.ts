@@ -251,6 +251,109 @@ export const BLOG_POSTS: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "que-horas-sai-o-resultado-da-lotofacil",
+    title: "Que horas sai o resultado da Lotofácil? Dias e horários dos sorteios",
+    description:
+      "Em quais dias a Lotofácil é sorteada, que horas sai o resultado e o que mudou com o fim dos sorteios de sábado em 2026.",
+    publishedAt: "2026-11-08",
+    categoria: "Como jogar",
+    sections: [
+      {
+        heading: "Dias e horários dos sorteios",
+        paragraphs: [
+          "A Lotofácil é sorteada de segunda a sexta à noite, em geral entre 20h e 21h (horário de Brasília), e aos domingos por volta das 11h da manhã. Os sorteios acontecem no Espaço da Sorte, em São Paulo, e podem ser acompanhados ao vivo pelos canais oficiais da Caixa.",
+          "Desde 19 de julho de 2026 não há mais sorteio regular aos sábados: o concurso que acontecia nesse dia passou para o domingo. Por isso, em um fim de semana, o resultado de sexta-feira é seguido direto pelo de domingo.",
+        ],
+      },
+      {
+        heading: "Quando o resultado aparece aqui no site",
+        paragraphs: [
+          "O resultado é publicado poucos minutos depois de divulgado pela Caixa. A página inicial e a página da Lotofácil mostram sempre o concurso mais recente, com as dezenas, a premiação por faixa e a estimativa do próximo prêmio.",
+        ],
+      },
+      {
+        heading: "Horários podem mudar",
+        paragraphs: [
+          "Feriados, eventos nacionais e concursos especiais podem alterar o horário ou o dia de um sorteio. A própria Caixa já remanejou sorteios em datas de jogos da Copa do Mundo de 2026, por exemplo. Se você precisa de certeza para um concurso específico, confira o comunicado oficial da Caixa antes de apostar.",
+          "As apostas também fecham antes do sorteio, e o horário de encerramento pode variar conforme o canal (lotérica ou aplicativo). Não deixe a aposta para a última hora.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "quanto-paga-a-lotofacil-premio-por-faixa",
+    title: "Quanto paga a Lotofácil? Prêmio por faixa, de 11 a 15 acertos",
+    description:
+      "Veja quanto a Lotofácil paga em cada faixa de acerto, quais prêmios são fixos, quais variam a cada concurso e como as chances se comparam.",
+    publishedAt: "2026-11-08",
+    categoria: "Prêmios",
+    sections: [
+      {
+        heading: "Cinco faixas de premiação",
+        paragraphs: [
+          "A Lotofácil paga prêmio para quem acerta 11, 12, 13, 14 ou 15 dezenas entre as 15 sorteadas. Quanto mais acertos, maior o prêmio — e menor a chance de acontecer.",
+        ],
+      },
+      {
+        heading: "Faixas com valor fixo: 11, 12 e 13 acertos",
+        paragraphs: [
+          "Nos concursos recentes, as três faixas menores pagaram valores fixos por aposta vencedora: R$ 7,00 para 11 acertos, R$ 14,00 para 12 acertos e R$ 35,00 para 13 acertos. Esses valores são definidos pela Caixa e podem ser reajustados, então vale conferir a premiação do último concurso.",
+          "Como o preço da aposta mínima é de R$ 3,50, acertar 11 dezenas devolve o dobro do valor apostado.",
+        ],
+      },
+      {
+        heading: "Faixas que variam: 14 e 15 acertos",
+        paragraphs: [
+          "Os prêmios de 14 e 15 acertos dependem da arrecadação do concurso e do número de ganhadores, porque o valor é dividido entre todos que acertaram. Em concursos recentes, a faixa de 14 acertos pagou de cerca de R$ 1,4 mil a R$ 2,9 mil por aposta.",
+          "A faixa principal, de 15 acertos, varia muito: em concursos recentes ficou entre menos de R$ 1 milhão e mais de R$ 2 milhões por aposta vencedora, e cresce quando o prêmio acumula (ninguém acerta os 15 pontos) e soma-se ao do concurso seguinte.",
+        ],
+      },
+      {
+        heading: "Como isso se compara às chances",
+        paragraphs: [
+          "As chances aproximadas numa aposta de 15 números são de cerca de 1 em 11 para 11 acertos, 1 em 60 para 12, 1 em 691 para 13, 1 em 21,7 mil para 14 e 1 em 3,3 milhões para 15. Ou seja: os prêmios menores saem com frequência, mas os maiores são raros.",
+          "Para ver quanto cada faixa pagou em um concurso específico, abra a página do concurso aqui no site: a tabela de premiação mostra o número de ganhadores e o valor por aposta.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "como-conferir-o-resultado-da-lotofacil",
+    title: "Como conferir o resultado da Lotofácil: hoje, ontem e o seu jogo",
+    description:
+      "Onde ver o resultado da Lotofácil de hoje, como achar o de ontem ou de qualquer concurso antigo e como conferir quantos números você acertou.",
+    publishedAt: "2026-11-08",
+    categoria: "Como jogar",
+    sections: [
+      {
+        heading: "Resultado de hoje",
+        paragraphs: [
+          "O resultado mais recente aparece na página inicial e na página da Lotofácil, com as dezenas sorteadas, a premiação e a estimativa do próximo prêmio. Ele é atualizado poucos minutos depois da divulgação oficial da Caixa.",
+        ],
+      },
+      {
+        heading: "Resultado de ontem e de concursos antigos",
+        paragraphs: [
+          "Cada concurso tem um número (como 3823) e uma página própria com as dezenas, os ganhadores e a análise do sorteio. Para achar o resultado de ontem ou de outra data, use a lista de todos os resultados, que permite filtrar por ano e buscar pelo número do concurso.",
+          "Se você só lembra a data, procure o concurso dessa data na lista: cada linha mostra o número, a data e as dezenas sorteadas.",
+        ],
+      },
+      {
+        heading: "Como conferir o seu jogo",
+        paragraphs: [
+          "Você pode conferir sua aposta de três formas: pelo comprovante na lotérica (que a própria casa confere), pelo aplicativo oficial das Loterias Caixa, ou usando o conferidor aqui do site, em que você marca os números que jogou e vê quantos acertou no último concurso.",
+          "Lembre que a premiação começa em 11 acertos. Guarde sempre o comprovante da aposta: ele é necessário para receber qualquer prêmio.",
+        ],
+      },
+      {
+        heading: "Prazo para resgatar o prêmio",
+        paragraphs: [
+          "O prazo para receber um prêmio é limitado e conta a partir da data do sorteio. Confira as regras vigentes no site da Caixa em vez de deixar para depois, principalmente se o valor for alto.",
+        ],
+      },
+    ],
+  },
 ];
 
 export function getBlogPost(slug: string): BlogPost | undefined {
