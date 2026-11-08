@@ -1,26 +1,42 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getUltimosResultados, formatarDezenas } from "@/lib/caixa";
+import { getUltimosResultados, getUltimoResultado, formatarDezenas } from "@/lib/caixa";
 import type { ResultadoLotofacil } from "@/lib/caixa";
-import { getUltimosResultadosQuina, QUINA_DEZENA_MIN, QUINA_DEZENA_MAX, type ResultadoQuina } from "@/lib/quina";
+import { getUltimosResultadosQuina, getUltimoResultadoQuina, QUINA_DEZENA_MIN, QUINA_DEZENA_MAX, type ResultadoQuina } from "@/lib/quina";
 import { calcularFrequencias } from "@/lib/estatisticas";
 import LotteryCard, { type DezenaComFrequencia } from "@/components/LotteryCard";
 import HouseAd from "@/components/HouseAd";
 import { SITE_NAME } from "@/lib/site";
 
-// Renderização dinâmica: busca os dados a cada requisição (ver comentário
-// equivalente em src/lib/caixa.ts).
+// Página em cache por 5 min (ISR): o cron revalida na hora quando sai
+// resultado novo, então não precisa buscar 100 concursos a cada visita.
 export const revalidate = 300;
 
 // Quantos concursos usar pra calcular a frequência de cada dezena sorteada
 // (o card mostra "Freq: X/50").
 const QUANTIDADE_ANALISADA = 50;
 
-export const metadata: Metadata = {
-  title: `${SITE_NAME} — resultados de Lotofácil e Quina`,
-  description:
-    "Resultado de hoje da Lotofácil e da Quina, atualizado assim que sai o sorteio: dezenas, premiação e estatísticas de cada loteria.",
-};
+const DESCRICAO_PADRAO =
+  "Resultado de hoje da Lotofácil e da Quina, atualizado assim que sai o sorteio: dezenas, premiação, estatísticas e conferidor de cada loteria.";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const [lotofacil, quina] = await Promise.all([
+    getUltimoResultado().catch(() => null),
+    getUltimoResultadoQuina().catch(() => null),
+  ]);
+
+  if (!lotofacil || !quina) {
+    return {
+      title: "Resultado da Lotofácil e da Quina hoje",
+      description: DESCRICAO_PADRAO,
+    };
+  }
+
+  return {
+    title: `Resultado da Lotofácil e da Quina hoje — Concursos ${lotofacil.numero} e ${quina.numero}`,
+    description: `Resultado da Lotofácil (concurso ${lotofacil.numero}) e da Quina (concurso ${quina.numero}) de hoje, atualizado assim que sai o sorteio: dezenas, premiação, estatísticas e conferidor.`,
+  };
+}
 
 /** Monta a lista de dezenas sorteadas + quantas vezes cada uma saiu no histórico analisado. */
 function montarDezenasComFrequencia(
@@ -49,10 +65,10 @@ export default async function Home() {
     <div className="mx-auto max-w-4xl px-4 py-8">
       <section className="mb-10 text-center">
         <h1 className="mb-3 text-2xl font-extrabold tracking-tight sm:text-3xl">
-          Resultados de loteria, atualizados assim que saem
+          Resultado da Lotofácil e da Quina de hoje
         </h1>
         <p className="text-gray-600 dark:text-gray-300">
-          Escolha a loteria pra ver o resultado de hoje, histórico e estatísticas.
+          Atualizado assim que sai o sorteio. Escolha a loteria pra ver as dezenas, a premiação, o histórico e as estatísticas.
         </p>
       </section>
 
