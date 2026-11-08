@@ -10,7 +10,7 @@ import { SITE_NAME } from "@/lib/site";
 
 // Renderização dinâmica: busca os dados a cada requisição (ver comentário
 // equivalente em src/lib/caixa.ts).
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 
 // Quantos concursos usar pra calcular a frequência de cada dezena sorteada
 // (o card mostra "Freq: X/50").

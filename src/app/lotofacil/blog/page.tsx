@@ -5,7 +5,7 @@ import NumerosDestaque from "@/components/NumerosDestaque";
 import { BLOG_POSTS } from "@/lib/blogPosts";
 import { getUltimosResultados } from "@/lib/caixa";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 
 const QUANTIDADE_ANALISADA = 100;
 
